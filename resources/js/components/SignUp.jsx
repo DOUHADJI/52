@@ -1,8 +1,10 @@
+import { Button } from '@nextui-org/react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { getWithAxios } from './api/axios';
 import InputWithLabel from './partials/InputWithLabel';
 
-const Login = () => {
+const SignUp = () => {
 
     const inputs = [
         {
@@ -33,6 +35,10 @@ const Login = () => {
 
     ]
 
+    const handleUserInscription = async () => {
+        const res = await getWithAxios("/api/sign_up")
+    }
+
     return (
         <div className='flex flex-col items-center justify-center min-h-screen'>
             <div className='flex flex-col items-center justify-center bg-[#F4F1F1] w-[384px] gap-12 py-8'>
@@ -49,9 +55,11 @@ const Login = () => {
                 </div>
 
                 <div className='flex  justify-end pr-8 w-full'>
-                    <button className='rounded-[20px] bg-[#93B98D] font-bold text-white h-[33px] w-[108px]'>
-                        Valider
-                    </button>
+                    <Button css={{ background:"#93B98D" }} onPress={handleUserInscription}>
+                        <span className=' font-bold text-white '>
+                            Valider
+                        </span>
+                    </Button>
                 </div>
             </div>
             
@@ -59,9 +67,9 @@ const Login = () => {
     )
 }
 
-export default Login
+export default SignUp
 
-if (document.getElementById('login')) {
+/* if (document.getElementById('login')) {
     const Index = ReactDOM.createRoot(document.getElementById("login"));
 
     Index.render(
@@ -69,4 +77,4 @@ if (document.getElementById('login')) {
             <Login/>
         </React.StrictMode>
     )
-}
+} */

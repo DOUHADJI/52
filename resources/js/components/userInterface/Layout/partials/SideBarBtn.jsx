@@ -1,10 +1,13 @@
+import { Link } from "@nextui-org/react"
 
 
-const SideBarBtn = ({label}) => {
+const SideBarBtn = ({label, url}) => {
     return(
-       <button className="text-black text-md font-black text-start">
+       <Link href={url}>
+        <p className="text-black text-md font-black text-start">
         {label}
-       </button> 
+       </p>
+       </Link> 
     )
 }
 

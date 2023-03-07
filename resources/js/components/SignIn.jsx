@@ -1,5 +1,6 @@
 import React from "react";
 import  ReactDOM  from "react-dom/client";
+import { Link } from "react-router-dom";
 import InputWithoutLabel from "./partials/InputWithoutLabel";
 
 const SignIn =() => {
@@ -32,9 +33,11 @@ const SignIn =() => {
                  {inputs.map((e,index) => <InputWithoutLabel key={index} placeholder={e.placeholder} inputType={e.inputType} />)} 
                 </div>
 
-                <button className='rounded-[20px] bg-[#93B98D] font-bold text-white h-[33px] w-[219px]'>
-                    Se connecter
-                </button>
+               <Link to={"/dashboard"}>
+                    <button className='rounded-[20px] bg-[#93B98D] font-bold text-white h-[33px] w-[219px]'>
+                        Se connecter
+                    </button>
+               </Link>
             </div>
             
         </div>
@@ -43,12 +46,3 @@ const SignIn =() => {
 
 export default SignIn
 
-if (document.getElementById('signin')) {
-    const Index = ReactDOM.createRoot(document.getElementById("signin"));
-
-    Index.render(
-        <React.StrictMode>
-            <SignIn/>
-        </React.StrictMode>
-    )
-}

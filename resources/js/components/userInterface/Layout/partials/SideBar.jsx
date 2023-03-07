@@ -4,19 +4,26 @@ import SideBarBtn from "./SideBarBtn"
 const SideBar = () => {
     const buttons = [
         {
-            label : 'Dashboard'
+            label : 'Dashboard',
+            url : "/dashboard"
         },
 
         {
-            label : 'Mes Ludis'
+            label : 'Mes Ludis',
+            url : "/dashboard"
+
         },
 
         {
-            label : 'Entrainement'
+            label : 'Entrainement',
+            url : "/dashboard"
+
         },
 
         {
-            label : 'Recrutement'
+            label : 'Recrutement',
+            url : "/dashboard"
+
         }
     ]
     return(
@@ -35,7 +42,7 @@ const SideBar = () => {
             </div>
 
             <div className="grid justify-end gap-12 mt-[90px] pr-4">
-                {buttons.map((b,index) => <SideBarBtn key={index} label={b.label} />)}
+                {buttons.map((b,index) => <SideBarBtn key={index} label={b.label} url={b.url} />)}
             </div>
 
             <div className="mt-[150px]">

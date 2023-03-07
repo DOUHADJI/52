@@ -18,6 +18,6 @@
     
     </head>
     <body class="antialiased bg-[#D9D9D9]">
-        <div id="recrutement"></div>
+        <div id="root"></div>
     </body>
 </html>
