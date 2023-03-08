@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/sign_up', [UserController::class, "create"]) -> middleware('guest');
 Route::post('/sign_in', [UserController::class, "login"]) -> middleware('guest');
-Route::get('/user', [UserController::class, "show"]) -> middleware('auth:sanctum');
+Route::get('/user', [UserController::class, "show"]) -> middleware('web');
 
 Route::get('/sign_out', [UserController::class, "logout"]) -> middleware('auth:sanctum');
 

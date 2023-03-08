@@ -13,8 +13,8 @@ const Layout = ({children}) =>  {
 
     const redirectToLogin = async () => {
         const res = await  getWithAxios('/user')
-        console.log(res)
-        res.user ? null : () => navigate('/sign_in')
+       
+        res.user ? null :  navigate('/sign_in')
       }
 
 

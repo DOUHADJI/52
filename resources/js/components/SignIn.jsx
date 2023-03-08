@@ -1,7 +1,7 @@
 import { Button, Link } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCsrfToken, postWithAxios } from "./api/axios";
+import { getCsrfToken, getWithAxios, postWithAxios } from "./api/axios";
 import InputWithoutLabel from "./partials/InputWithoutLabel";
 
 const SignIn =() => {
@@ -29,16 +29,17 @@ const SignIn =() => {
    }
 
    const redirectToDashboard = async () => {
-    try {
-      const data = await getUserFromAPI()
-      navigate('/dashboard')
-    } catch (error) {
-      
-    }
+    
+      const res = await getWithAxios('/user')
+
+     res.user? navigate('/dashboard') : null
+
+    
+ 
   }
 
   useEffect(()=>{
-    /* redirectToDashboard() */
+     redirectToDashboard() 
 },[])
    
 
