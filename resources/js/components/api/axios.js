@@ -39,10 +39,7 @@ export const getWithAxios = async (url) => {
 }
 
 export const postWithAxios = async (url, dataToSend) => {
-  const params = {
-    withCredentials: true,
-  }
-
+ 
   try {
     const { data } = await axiosInstance().post(url, dataToSend)
     return data
@@ -56,9 +53,9 @@ export const getUserFromAPI = async () => {
   return data
 }
 
-export const getOffersFromAPI = async () => {
-  const { offers } = await getWithAxios('/offers')
-  return offers
+export const getUserLudisFromAPI = async ({userId}) => {
+  const { Ludis } = await getWithAxios('/ludis')
+  return ludis
 }
 
 export const getCookieValue = (tokenName) => {

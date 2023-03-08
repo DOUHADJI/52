@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import { Button, Link } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCsrfToken, postWithAxios } from "./api/axios";
@@ -53,8 +53,10 @@ const SignIn =() => {
                         se connecter
                     </span>
                 </Button>
+                <p className="underline">Pas encore inscrit(e) ? <Link href="/sign_up">se connecter</Link> </p>
         
             </div>
+
             
         </div>
     )

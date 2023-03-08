@@ -10,13 +10,7 @@ const Layout = ({children}) =>  {
     const date = new Date();
     const currentDate = date.toLocaleDateString()
 
-    const [user, setUser] =useState()
-
-    const getUser = async () => {
-        const res = await getWithAxios('/user')
-        
-         setUser(res.user)
-    }
+  
 
  
     function timeCount() {
@@ -37,16 +31,13 @@ const Layout = ({children}) =>  {
         setTimeout(()=>timeCount(), 1000);
     }
 
-    useEffect(()=>{
-        getUser()
-    },[])
 
     useEffect(()=>{
         timeCount()
     },[])
     
     return(
-        <UserContextProvider value={user}>
+        <UserContextProvider>
             <div className="flex p-6">
                 <SideBar />
                 <div className="bg-[#F0EDED] w-full rounded-r-[15px] text-md">

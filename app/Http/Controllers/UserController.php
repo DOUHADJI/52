@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ludi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,8 @@ class UserController extends Controller
             "pseudo" => "required",
             "email" => "required|email",
             "mot_de_passe" => ['required', Password::min(8)->mixedCase()],
+            "ecole" => "required",
+            "specialite" => "required"
         ]);
 
         $user_email_already_exits = User::where('email', $request -> email) -> first();
@@ -59,16 +62,25 @@ class UserController extends Controller
             "pseudo" => $request -> pseudo,
             "bourse" => $request -> bourse,
             "email" => $request -> email,
-            "password" => Hash::make($request -> mot_de_passe)
+            "password" => Hash::make($request ->mot_de_passe)
             
         ]);
 
         Auth::login($user);
 
+        $school = Ludi::create([
+            "nom" => $request -> ecole,
+            "specialite" => $request -> specialite,
+            "user_id" => Auth::id()
+        ]);
+
+       
+
         return response() -> json([
             "status" => "success",
             "message" => "Inscription réussie",
-            "user" => Auth::user()
+            "user" => Auth::user(),
+            "school" => $school
         ],200);
     }
 
@@ -122,12 +134,13 @@ class UserController extends Controller
 
     
     public function logout (Request $request) {
-        Auth::logout();
+
+        Auth::guard('web')->logout();
  
         $request->session()->invalidate();
-     
+ 
         $request->session()->regenerateToken();
-
+        
         return response() -> json([
             "status" => "success",
             "message" => "déconnexion réussie"

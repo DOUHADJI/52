@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import { getWithAxios } from "../../../api/axios"
 import { UserContext } from "../../../userContext"
 import SideBarBtn from "./SideBarBtn"
@@ -7,6 +8,9 @@ import SideBarBtn from "./SideBarBtn"
 const SideBar = () => {
 
     const user = useContext(UserContext)
+    const navigate = useNavigate()
+
+    
 
     const buttons = [
         {
@@ -16,27 +20,30 @@ const SideBar = () => {
 
         {
             label : 'Mes Ludis',
-            url : "/dashboard"
+            url : "/ludis"
 
         },
 
         {
             label : 'Entrainement',
-            url : "/dashboard"
+            url : "/entrainement"
 
         },
 
         {
             label : 'Recrutement',
-            url : "/dashboard"
+            url : "/recrutement"
 
         }
     ]
 
     const handleLogout = async () => {
         const res = await getWithAxios("/sign_out")
-      
+
+      res.errors ? null : setTimeout(()=>navigate('/sign_in'), 1000)
     }
+
+  
 
     return(
         <div  className="bg-[#FBF7F7]  rounded-l-[15px] w-[280px] pt-[90px] pb-[50px] px-12 relative">

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import GladiatorInfos from '../../partials/GladiatorInfos';
 import PJCard from '../../partials/PJCard';
+import { UserContext } from '../../userContext';
 import Layout from "../Layout/Layout"
 
 const Dashboard = () => {
+
+    const user = useContext(UserContext)
+
+    console.log(user)
 
     const gladiators = [
         {
@@ -121,13 +126,15 @@ const Dashboard = () => {
 
         }
     ]
+
+
     return(
         <Layout>
             <div className='pt-8'>
                 <div className='bg-[#AC93DF] rounded-[15px] py-8 px-6'>
                     <p className='text-white font-bold text-2xl'>
                         Bienvenue,{' '}
-                        <span className='text-2xl'>Pseudo</span>
+                        <span className='text-2xl'>{user?.nom}</span>
                     </p>
                     <div className=' flex justify-end items-center gap-4 w-full'>
                         <p className='text-white font-bold text-md'>Début des épreuves <br/> dans le colisé</p>

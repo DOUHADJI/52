@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import Layout from "../Layout/Layout"
 import GladiatorInfos from '../../partials/GladiatorInfos';
 import { Button } from '@nextui-org/react';
@@ -98,10 +97,3 @@ const Ludi = () => {
 
 export default Ludi
 
-if (document.getElementById('ludi')) {
-    const Index = ReactDOM.createRoot(document.getElementById("ludi"));
-
-    Index.render(
-        <Ludi />
-    )
-}

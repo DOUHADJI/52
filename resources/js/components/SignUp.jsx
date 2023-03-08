@@ -1,9 +1,11 @@
-import { Button } from '@nextui-org/react';
+import { Button, Link, Radio } from '@nextui-org/react';
 import React, { useState } from 'react';
 import { BsFillCheckSquareFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { getCsrfToken, postWithAxios } from './api/axios';
+import { specialites } from './api/const';
 import InputWithLabel from './partials/InputWithLabel';
+import Selection from './partials/Selection';
 
 const SignUp = () => {
 
@@ -12,44 +14,15 @@ const SignUp = () => {
     const [pseudo, setPseudo] = useState(null)
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
+    const [ecole, setEcole] = useState(null)
+    const [specialite, setSpecialite] = useState(null)
     const [data, setData] = useState(null)
     const [errors, setErrors] = useState({})
     const [signupSuccess, setSignupSuccess] = useState(false)
     const navigate = useNavigate()
 
-   
+    const options = specialites
 
-    
-
-
-    const inputs = [
-        {
-            label : "Nom",
-            inputType : "text",
-        },
-
-        {
-            label : "Prénom(s)",
-            inputType : "text"
-        },
-
-        {
-            label : "Pseudo",
-            inputType : "text"
-        },
-
-        {
-            label : "Email",
-            inputType : "email"
-        },
-
-        {
-            label : "Mot de passe",
-            inputType : "password"
-        }
-
-
-    ]
 
     const handleUserInscription = async () => {
         const user = {
@@ -58,25 +31,27 @@ const SignUp = () => {
             pseudo : pseudo,
             email : email,
             mot_de_passe : password,
-            bourse : 10
+            bourse : 10,
+            ecole : ecole,
+            specialite : specialite
     
         }
 
       
         const res = await postWithAxios("/sign_up", user)
-    
+        console.log(res)
         res.errors ? setErrors(res.errors) : handleInscriptionSuccessfull()
     }
 
     const handleInscriptionSuccessfull = () => {
         
         setSignupSuccess(true)
-        setTimeout(()=>navigate('/sign_in'), 1500)
+        setTimeout(()=>navigate('/dashboard'), 1500)
     }
 
     return (
         <div className='flex flex-col items-center justify-center min-h-screen'>
-            <div className='flex flex-col items-center justify-center bg-[#F4F1F1] w-[384px] h-full gap-12 py-8'>
+            <div className='flex flex-col items-center justify-center bg-[#F4F1F1]  h-full gap-12 py-8 px-10'>
                 <p className="font-bold text-lg text-[#BF7B2A] text-center">
                     52 avant notre ère : Les jeux du cirque
                 </p>
@@ -87,11 +62,13 @@ const SignUp = () => {
 
                 <div hidden={signupSuccess} className="py-8">
                     <div className='flex flex-col gap-6'  >
-                    <InputWithLabel key={1} label={"Nom"} inputType={"text"} setValue={setFirstName} error={errors.nom} /> 
-                    <InputWithLabel key={2} label={"Prénom(s)"} inputType={"text"} setValue={setSecondName} error={errors.prenoms} /> 
-                    <InputWithLabel key={3} label={"Pseudo"} inputType={"text"} setValue={setPseudo} error={errors.pseudo} /> 
-                    <InputWithLabel key={4} label={"Email"} inputType={"text"} setValue={setEmail} error={errors.email} /> 
-                    <InputWithLabel key={5} label={"Mot de passe"} inputType={"password"} setValue={setPassword} error={errors.mot_de_passe} /> 
+                    <InputWithLabel  label={"Nom"} inputType={"text"} setValue={setFirstName} error={errors.nom} /> 
+                    <InputWithLabel  label={"Prénom(s)"} inputType={"text"} setValue={setSecondName} error={errors.prenoms} /> 
+                    <InputWithLabel  label={"Pseudo"} inputType={"text"} setValue={setPseudo} error={errors.pseudo} /> 
+                    <InputWithLabel  label={"Email"} inputType={"text"} setValue={setEmail} error={errors.email} /> 
+                    <InputWithLabel  label={"Nom de l'école"} inputType={"text"} setValue={setEcole} error={errors.ecole} /> 
+                    <Selection label={"Specialité de l'école"} options={options} setSpecialite={setSpecialite} specialite={specialite} error={errors.specialite} />
+                    <InputWithLabel  label={"Mot de passe"} inputType={"password"} setValue={setPassword} error={errors.mot_de_passe} /> 
 
                     </div>
 
@@ -111,6 +88,7 @@ const SignUp = () => {
                     </p>
                 </div>
 
+                <p className="underline">Déjà inscrit(e) ? <Link href="/sign_in">se connecter</Link> </p>
                
 
             </div>
