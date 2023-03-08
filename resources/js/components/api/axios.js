@@ -2,15 +2,13 @@ import axios from 'axios'
 
 export const axiosInstance = () => {
   const axiosInstance = axios.create({
-    withCredentials: true,
-    baseURL: import.meta.env.API_URL,
+   // baseURL: import.meta.env.VITE_API_URL,
     params: {
       headers: {
-        'X-Requested-With': 'XMLHttpRequest',
         Accept: 'application/json',
       },
     },
-     /* timeout: 2000, */
+     timeout: 5000,
   })
 
   return axiosInstance
@@ -19,7 +17,6 @@ export const axiosInstance = () => {
 export const getCsrfToken = async () => {
   try {
     const { headers } = await axiosInstance().get('/sanctum/csrf-cookie')
-
     return headers
   } catch (err) {
     return err

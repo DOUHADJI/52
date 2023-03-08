@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 const Welcome = () => {
 
+   
+
     return (
         <div className='flex flex-col items-center justify-center min-h-screen'>
             <div className='flex flex-col items-center justify-center bg-[#F4F1F1] h-[345px] w-[384px] gap-12'>

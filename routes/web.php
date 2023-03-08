@@ -17,13 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::post('/sign_up', [UserController::class, "create"]) -> middleware('guest');
+Route::post('/sign_in', [UserController::class, "login"]) -> middleware('guest');
+Route::get('/user', [UserController::class, "show"]) -> middleware('auth:sanctum');
+
+Route::post('/sign_out', [UserController::class, "logout"]) -> middleware('auth:sanctum');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
-Route::get('assets/{path}', function ($path) {
-    return response()->file(public_path("assets/$path"));
+
+Route::fallback(function() {
+    return view("welcome");
 });

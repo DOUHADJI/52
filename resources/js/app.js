@@ -13,11 +13,5 @@ import './bootstrap';
  */
 
 import './components/Index';
-/* import './components/Welcome';
-import './components/SignUp';
-import './components/SignIn';
-import './components/userInterface/Layout/Layout';
-import './components/userInterface/Dashboard/Dashboard'
-import './components/userInterface/Ludis/Ludi'
-import './components/userInterface/Entrainement/Entrainement' */
+
 

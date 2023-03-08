@@ -1,7 +1,13 @@
+import { useContext } from "react"
+import { getWithAxios } from "../../../api/axios"
+import { UserContext } from "../../../userContext"
 import SideBarBtn from "./SideBarBtn"
 
 
 const SideBar = () => {
+
+    const user = useContext(UserContext)
+
     const buttons = [
         {
             label : 'Dashboard',
@@ -26,18 +32,24 @@ const SideBar = () => {
 
         }
     ]
+
+    const handleLogout = async () => {
+        const res = await getWithAxios("/sign_out")
+      
+    }
+
     return(
         <div  className="bg-[#FBF7F7]  rounded-l-[15px] w-[280px] pt-[90px] pb-[50px] px-12 relative">
             <div className="flex justify-center">
-                <p className="font-bold text-[#4D4A4A]">
-                    Pseudo
+                <p className="font-bold uppercase text-[#4D4A4A]">
+                    {user?.nom}
                 </p>
             </div>
 
             <div className="flex flex-col  items-center justify-between bg-[#D9D9D9] mt-[60px] p-3">
                 <p className="text-black font-bold underline ">Bourse</p>
                 <p className="text-[#BF7B2A] font-bold mt-6 ">
-                    <span className="text-2xl">10</span> deniers
+                    <span className="text-2xl">{user?.bourse}</span> deniers
                 </p>
             </div>
 
@@ -46,7 +58,7 @@ const SideBar = () => {
             </div>
 
             <div className="mt-[150px]">
-                <button className="bg-[#C08989] w-[137px] h-[41px] text-white font-bold rounded-[15px]">
+                <button className="bg-[#C08989] w-[137px] h-[41px] text-white font-bold rounded-[15px]" onClick={handleLogout}>
                     Déconnexion
                 </button>
             </div>

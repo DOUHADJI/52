@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('bourse');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('mot_de_passe');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

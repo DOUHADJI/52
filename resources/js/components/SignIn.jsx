@@ -1,23 +1,32 @@
-import React from "react";
-import  ReactDOM  from "react-dom/client";
-import { Link } from "react-router-dom";
+import { Button } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getCsrfToken, postWithAxios } from "./api/axios";
 import InputWithoutLabel from "./partials/InputWithoutLabel";
 
 const SignIn =() => {
-    const inputs = [
-        {
-            placeholder : "Pseudo",
-            inputType : "text"
-        },
-
-        {
-            placeholder : "Mot de passe",
-            inputType : "password"
-        },
+   const [email, setEmail] = useState()
+   const [password, setPassword] = useState()
+   const [errors, setErrors] = useState({})
+   const navigate = useNavigate()
 
 
+   const handleConnexion = async () => {
+    const credentials =  {
+        email : email,
+        password : password
+    }
 
-    ]
+    await getCsrfToken()
+    const res = await postWithAxios('/sign_in', credentials)
+    console.log(res)
+    res.errors? setErrors(res.errors) : navigate('/dashboard')
+  
+
+   }
+
+   
+
     return(
         <div className='flex flex-col items-center justify-center min-h-screen'>
             <div className='flex flex-col items-center justify-center bg-[#F4F1F1] w-[384px] gap-6 py-8'>
@@ -29,15 +38,22 @@ const SignIn =() => {
                     Formulaire de connexion
                 </p>
 
+                <p className='text-red-600'>
+                    {errors?.message}
+                </p>
+
                 <div className='flex flex-col gap-6'>
-                 {inputs.map((e,index) => <InputWithoutLabel key={index} placeholder={e.placeholder} inputType={e.inputType} />)} 
+                    <InputWithoutLabel  placeholder={"email"} inputType={'text'} setValue={setEmail} error={errors.email} />  
+                    <InputWithoutLabel  placeholder={"mot de passe"} inputType={'password'} setValue={setPassword} error={errors.password}  />  
                 </div>
 
-               <Link to={"/dashboard"}>
-                    <button className='rounded-[20px] bg-[#93B98D] font-bold text-white h-[33px] w-[219px]'>
-                        Se connecter
-                    </button>
-               </Link>
+          
+                <Button css={{ background: "#93B98D"}} onPress={handleConnexion} >
+                    <span className='font-bold text-white'>
+                        se connecter
+                    </span>
+                </Button>
+        
             </div>
             
         </div>
