@@ -118,7 +118,7 @@ class UserController extends Controller
         if(Auth::check()){
             return response() ->json([
                 "status" => "success",
-                "message" => "user is   connected",
+                "message" => "user is connected",
                 "user"=> Auth::user()
 
             ], 200);

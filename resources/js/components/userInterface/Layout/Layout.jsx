@@ -1,5 +1,5 @@
-import React, { Children, createContext, useEffect, useState } from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getWithAxios } from '../../api/axios';
 import { UserContextProvider } from '../../userContext';
 import SideBar from './partials/SideBar';
@@ -9,8 +9,15 @@ import SideBar from './partials/SideBar';
 const Layout = ({children}) =>  {
     const date = new Date();
     const currentDate = date.toLocaleDateString()
+    const navigate = useNavigate()
 
-  
+    const redirectToLogin = async () => {
+        const res = await  getWithAxios('/user')
+        console.log(res)
+        res.user ? null : () => navigate('/sign_in')
+      }
+
+
 
  
     function timeCount() {
@@ -30,6 +37,11 @@ const Layout = ({children}) =>  {
 
         setTimeout(()=>timeCount(), 1000);
     }
+
+    useEffect(()=>{
+        redirectToLogin()
+      
+    },[])
 
 
     useEffect(()=>{

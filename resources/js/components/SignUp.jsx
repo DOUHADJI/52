@@ -39,12 +39,11 @@ const SignUp = () => {
 
       
         const res = await postWithAxios("/sign_up", user)
-        console.log(res)
+      
         res.errors ? setErrors(res.errors) : handleInscriptionSuccessfull()
     }
 
-    const handleInscriptionSuccessfull = () => {
-        
+    const handleInscriptionSuccessfull = () => {  
         setSignupSuccess(true)
         setTimeout(()=>navigate('/dashboard'), 1500)
     }

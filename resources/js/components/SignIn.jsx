@@ -17,14 +17,29 @@ const SignIn =() => {
         password : password
     }
 
+    console.log(credentials)
+
     await getCsrfToken()
     const res = await postWithAxios('/sign_in', credentials)
-    console.log(res)
-    res.errors? setErrors(res.errors) : navigate('/dashboard')
+   
+
+    res.status == "success" ?  navigate('/dashboard')  : setErrors(res.errors)
   
 
    }
 
+   const redirectToDashboard = async () => {
+    try {
+      const data = await getUserFromAPI()
+      navigate('/dashboard')
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(()=>{
+    /* redirectToDashboard() */
+},[])
    
 
     return(
@@ -43,8 +58,8 @@ const SignIn =() => {
                 </p>
 
                 <div className='flex flex-col gap-6'>
-                    <InputWithoutLabel  placeholder={"email"} inputType={'text'} setValue={setEmail} error={errors.email} />  
-                    <InputWithoutLabel  placeholder={"mot de passe"} inputType={'password'} setValue={setPassword} error={errors.password}  />  
+                    <InputWithoutLabel  placeholder={"email"} inputType={'text'} setValue={setEmail} error={errors?.email} />  
+                    <InputWithoutLabel  placeholder={"mot de passe"} inputType={'password'} setValue={setPassword} error={errors?.password}  />  
                 </div>
 
           
@@ -53,7 +68,7 @@ const SignIn =() => {
                         se connecter
                     </span>
                 </Button>
-                <p className="underline">Pas encore inscrit(e) ? <Link href="/sign_up">se connecter</Link> </p>
+                <p className="underline">Pas encore inscrit(e) ? <Link href="/sign_up">s'inscrire</Link> </p>
         
             </div>
 

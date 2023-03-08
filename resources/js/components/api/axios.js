@@ -49,8 +49,8 @@ export const postWithAxios = async (url, dataToSend) => {
 }
 
 export const getUserFromAPI = async () => {
-  const data = await getWithAxios('/user')
-  return data
+  const res = await getWithAxios('/user')
+  return res
 }
 
 export const getUserLudisFromAPI = async ({userId}) => {
