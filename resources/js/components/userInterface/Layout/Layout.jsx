@@ -24,7 +24,7 @@ const Layout = ({children}) =>  {
         }
         const res = postWithAxios("/progression_du_jour", data)
 
-        console.log(res)
+        
     }
 
 

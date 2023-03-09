@@ -215,6 +215,47 @@ class UserController extends Controller
     }
 
 
+    public function change_password (Request $request) {
+
+        $request -> validate([
+            "password"=> ['required', Password::min(8)->mixedCase()],
+            "newPassword"=> ['required', Password::min(8)->mixedCase()],
+            "newPassword_confirmation"=> ['required', Password::min(8)->mixedCase()],
+        ]);
+
+        $check_if_user_password_is_correct = Hash::check($request->password, Auth::user()->password);
+
+        if(!$check_if_user_password_is_correct){
+            return response() ->json([
+                "status"=>"success",
+                "errors" =>[
+                    "password" => "mot de passe incorrect"
+                ]
+            ]);
+        }
+
+         $user = Auth::user();
+
+         $user ->update([
+            "password" => $request -> newPassword
+         ]);
+
+         Auth::guard('web')->logout();
+ 
+         $request->session()->invalidate();
+  
+         $request->session()->regenerateToken();
+
+
+         return response() -> json([
+            "status" => "success",
+            "message" => "mot de passe changé avec success",
+         ]);
+
+
+    }
+
+
     
     public function logout (Request $request) {
 

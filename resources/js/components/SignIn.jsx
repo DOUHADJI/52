@@ -23,7 +23,7 @@ const SignIn =() => {
     const res = await postWithAxios('/sign_in', credentials)
    
 
-    res.status == "success" ?  navigate('/dashboard')  : setErrors(res.errors)
+    res.status == "success" ?  navigate('/backoffice/accueil')  : setErrors(res.errors)
   
 
    }

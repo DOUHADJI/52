@@ -103,16 +103,18 @@ const Profil = () => {
         </div>
 
         <div className="flex justify-end items-center mt-4 w-full gap-4">
-          <Button
-            auto
-            type={null}
-            css={{ background:"#BF7B2A" }}
-            onClick={() => showUpdateForm(true)}
-          >
-            <p className="font-bold">
-              Changer mon mot de passe
-            </p>
-          </Button>
+        <Link to={"/backoffice/mon_compte/changer_mon_mot_de_passe"}>
+            <Button
+              auto
+              type={null}
+              css={{ background:"#BF7B2A" }}
+              onClick={() => showUpdateForm(true)}
+            >
+              <p className="font-bold">
+                Changer mon mot de passe
+              </p>
+            </Button>
+          </Link>
 
           <Link to={"/backoffice/mon_compte/mettre_mes_informations_a_jour"}>
             <Button

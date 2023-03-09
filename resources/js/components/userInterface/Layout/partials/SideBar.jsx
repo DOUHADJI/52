@@ -55,7 +55,7 @@ const SideBar = () => {
   
 
     return(
-        <div  className=" grid justify-between bg-[#FBF7F7]  rounded-l-[15px] w-[280px] pt-[90px] pb-[50px] px-12">
+        <div  className=" grid justify-between bg-[#FBF7F7]  rounded-l-[15px] w-[280px] pt-[70px] pb-[50px] px-12">
         <div className="h-full">
             <div className="flex justify-center">
                 <p className="font-bold uppercase text-[#4D4A4A]">

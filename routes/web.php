@@ -27,6 +27,8 @@ Route::get('/user', [UserController::class, "show"]) -> middleware('web');
 
 Route::post('/update_user_informations', [UserController::class, "update"]) -> middleware('auth:sanctum');
 
+Route::post('/change_password', [UserController::class, "change_password"]) -> middleware('auth:sanctum');
+
 Route::get('/sign_out', [UserController::class, "logout"]) -> middleware('auth:sanctum');
 
 Route::get('/get_user_ludis', [LudiController::class, 'get_user_ludis']) -> middleware('auth:sanctum');

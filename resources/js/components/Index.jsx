@@ -15,6 +15,7 @@ import Parametres from "./userInterface/Parametres/Parametres";
 import UpdateProfil from "./userInterface/Parametres/updateProfil";
 import Layout from "./userInterface/Layout/Layout";
 import Profil from "./userInterface/Parametres/Profil";
+import UpdatePassword from "./userInterface/Parametres/updatePassword";
 
 
 
@@ -69,6 +70,11 @@ const router = createBrowserRouter([
             path: "mettre_mes_informations_a_jour",
             element: <UpdateProfil />
           
+          },
+
+          {
+            path: "changer_mon_mot_de_passe",
+            element : <UpdatePassword />
           }
         ]
       },
