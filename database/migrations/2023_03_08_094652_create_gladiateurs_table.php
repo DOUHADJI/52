@@ -21,9 +21,11 @@ return new class extends Migration
             $table->integer('equilibre');
             $table->integer('vitesse');
             $table->integer('strategie');
-            $table->foreignId('user_id')->constrained('ludis');
+            $table->foreignId('ludi_id')->constrained('ludis');
             $table->timestamps();
         });
+
+        
     }
 
     /**

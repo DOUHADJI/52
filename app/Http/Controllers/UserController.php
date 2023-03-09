@@ -131,6 +131,81 @@ class UserController extends Controller
        ],200);
     }
 
+    public function update (Request $request) {
+
+        $request -> validate([
+            "nom" => "required",
+            "prenoms" => "required",
+            "pseudo" => "required",
+            "email" => "required|email",
+            "mot_de_passe" => ['required', Password::min(8)->mixedCase()],
+            "ecole" => "required",
+            "specialite" => "required"
+        ]);
+
+        $user_email_already_exits = User::where('email', $request -> email) -> first();
+        $user_pseudo_already_exits = User::where('pseudo', $request -> pseudo) -> first();
+
+      
+
+        if($user_email_already_exits){
+
+            $error =  [
+                'email' => "Cet email existe déjà"
+            ];
+               
+    
+            return response() -> json([
+                "status" => "success",
+                "errors" =>  $error
+            ]);
+        }
+
+        if($user_pseudo_already_exits){
+
+            $error =  [
+                'pseudo' => "Le pseudo existe déjà"
+            ];
+               
+    
+            return response() -> json([
+                "status" => "success",
+                "errors" =>  $error
+            ]);
+        }
+
+        if (Auth::check()) {
+            // The user is logged in...
+            $user = User::findOrFail( Auth::id());
+
+            $user -> update([
+                'name' => $request -> name,
+                'email' => $request -> email,
+                'city' => $request -> city,
+                'country' =>$request -> country,
+                'address' => $request -> address,
+                'contact' => $request -> contact,
+            ]);
+
+            return response() -> json([
+                "status" => "success",
+                "message" => "Vos informations ont été mises à jour avec success",
+                "user" => $user
+                
+            ],200);
+
+        }
+
+        return response() -> json([
+            "status" => "success",
+            "message" => "Oups! Une erreur s'est produite",
+           
+            
+        ],200);
+
+        
+    }
+
 
     
     public function logout (Request $request) {

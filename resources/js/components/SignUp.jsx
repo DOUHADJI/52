@@ -50,8 +50,8 @@ const SignUp = () => {
 
     return (
         <div className='flex flex-col items-center justify-center min-h-screen'>
-            <div className='flex flex-col items-center justify-center bg-[#F4F1F1]  h-full gap-12 py-8 px-10'>
-                <p className="font-bold text-lg text-[#BF7B2A] text-center">
+            <div className='flex flex-col items-center justify-center bg-[#F4F1F1]  h-full gap-4 py-8 px-10'>
+                <p className="font-bold text-lg text-[#BF7B2A] text-center my-6">
                     52 avant notre ère : Les jeux du cirque
                 </p>
 
@@ -59,8 +59,8 @@ const SignUp = () => {
                     Formulaire d'inscription
                 </p>
 
-                <div hidden={signupSuccess} className="py-8">
-                    <div className='flex flex-col gap-6'  >
+                <div hidden={signupSuccess} className="py-4">
+                    <div className='flex flex-col gap-4'  >
                     <InputWithLabel  label={"Nom"} inputType={"text"} setValue={setFirstName} error={errors.nom} /> 
                     <InputWithLabel  label={"Prénom(s)"} inputType={"text"} setValue={setSecondName} error={errors.prenoms} /> 
                     <InputWithLabel  label={"Pseudo"} inputType={"text"} setValue={setPseudo} error={errors.pseudo} /> 
@@ -71,9 +71,9 @@ const SignUp = () => {
 
                     </div>
 
-                    <div className='flex  justify-end  mt-8 w-full' >
-                        <Button css={{ background:"#93B98D" }} onPress={handleUserInscription}>
-                            <span className=' font-bold text-white '>
+                    <div className='flex justify-center mt-8 w-full' >
+                        <Button   css={{ background:"#93B98D" }} onPress={handleUserInscription}>
+                            <span className=' font-bold text-white w-full '>
                                 Valider
                             </span>
                         </Button>

@@ -5,7 +5,7 @@ import { Button } from '@nextui-org/react';
 import GladiatorTraining from '../../partials/GladiatorTraining';
 
 
-const Recrutement = () => {
+const Entrainement = () => {
 
     const gladiators = [
         {
@@ -70,6 +70,8 @@ const Recrutement = () => {
 
     
     ]
+
+
     return(
         <Layout>
             <div className='bg-[#D9D9D9] mt-[90px] py-10 '>
@@ -88,12 +90,4 @@ const Recrutement = () => {
     )
 }
 
-export default Recrutement
-
-if (document.getElementById('recrutement')) {
-    const Index = ReactDOM.createRoot(document.getElementById("recrutement"));
-
-    Index.render(
-        <Recrutement />
-    )
-}
+export default Entrainement

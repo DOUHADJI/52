@@ -69,6 +69,9 @@ const Ludi = () => {
 
     
     ]
+
+    
+    
     return(
         <Layout>
             <div className='bg-[#D9D9D9] mt-[90px] py-10 '>

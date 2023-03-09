@@ -7,8 +7,10 @@ import {
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Dashboard from "./userInterface/Dashboard/Dashboard";
-import Ludi from "./userInterface/Ludis/Ludi";
+import Ludis from "./userInterface/Ludis/Ludis";
 import Welcome from "./Welcome";
+import Entrainement from "./userInterface/Entrainement/Entrainement";
+import { UserContextProvider } from "./userContext";
 
 
 
@@ -35,10 +37,19 @@ const router = createBrowserRouter([
 
   {
     path: "/ludis",
-    element: <Ludi/>,
+    element: <Ludis/>,
+   
+  },
+
+  {
+    path: "/entrainement",
+    element: <Entrainement />
   }
 
 ]);
+
+
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

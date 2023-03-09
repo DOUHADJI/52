@@ -1,7 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getWithAxios } from '../../api/axios';
-import { UserContextProvider } from '../../userContext';
+import { getWithAxios, postWithAxios } from '../../api/axios';
+import { progressions } from '../../api/const';
+import { UserContext, UserContextProvider } from '../../userContext';
 import SideBar from './partials/SideBar';
 
 
@@ -15,8 +16,16 @@ const Layout = ({children}) =>  {
         const res = await  getWithAxios('/user')
        
         res.user ? null :  navigate('/sign_in')
-      }
+    }
 
+    const setDailyProgressions = async () => {
+        const data = {
+            progressions : progressions
+        }
+        const res = postWithAxios("/progression_du_jour", data)
+
+        console.log(res)
+    }
 
 
  
@@ -39,9 +48,12 @@ const Layout = ({children}) =>  {
     }
 
     useEffect(()=>{
-        redirectToLogin()
-      
+         redirectToLogin()
     },[])
+
+    useEffect(()=>{
+        setDailyProgressions()
+   },[])
 
 
     useEffect(()=>{
@@ -50,7 +62,7 @@ const Layout = ({children}) =>  {
     
     return(
         <UserContextProvider>
-            <div className="flex p-6">
+            <div className="flex p-6 ">
                 <SideBar />
                 <div className="bg-[#F0EDED] w-full rounded-r-[15px] text-md">
                     <div className='flex gap-10 justify-end pr-12 items-center bg-[#C08989] rounded-tr-[15px] h-[49px]'>
@@ -59,12 +71,12 @@ const Layout = ({children}) =>  {
                         </p>
 
                         <p className='font-bold text-white'>
-                           Heure : <span  id='clock'></span>
+                        Heure : <span  id='clock'></span>
                         </p>
 
                     </div>
                     
-                    <div className='px-8'>
+                    <div className='px-8'> 
                         {children}
                     </div>
                 </div>

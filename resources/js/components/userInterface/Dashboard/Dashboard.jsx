@@ -7,9 +7,6 @@ import Layout from "../Layout/Layout"
 
 const Dashboard = () => {
 
-    const user = useContext(UserContext)
-
-    console.log(user)
 
     const gladiators = [
         {
@@ -134,7 +131,11 @@ const Dashboard = () => {
                 <div className='bg-[#AC93DF] rounded-[15px] py-8 px-6'>
                     <p className='text-white font-bold text-2xl'>
                         Bienvenue,{' '}
-                        <span className='text-2xl'>{user?.nom}</span>
+                        <span className='text-2xl'>
+                            <UserContext.Consumer>
+                                {value => <span>{value?.nom}</span>}
+                            </UserContext.Consumer>
+                        </span>
                     </p>
                     <div className=' flex justify-end items-center gap-4 w-full'>
                         <p className='text-white font-bold text-md'>Début des épreuves <br/> dans le colisé</p>

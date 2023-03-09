@@ -36,16 +36,16 @@ const SignIn =() => {
 
     
  
-  }
+    }
 
-  useEffect(()=>{
-     redirectToDashboard() 
-},[])
-   
+    useEffect(()=>{
+        redirectToDashboard() 
+    },[])
+    
 
     return(
-        <div className='flex flex-col items-center justify-center min-h-screen'>
-            <div className='flex flex-col items-center justify-center bg-[#F4F1F1] w-[384px] gap-6 py-8'>
+        <div className='flex items-center justify-center min-h-screen'>
+            <div className='flex flex-col items-center justify-center bg-[#F4F1F1] gap-6 py-8 px-10'>
                 <p className="font-bold text-md text-[#BF7B2A] text-center pt-12 mb-12">
                     52 avant notre ère : Les jeux du cirque
                 </p>
@@ -71,9 +71,7 @@ const SignIn =() => {
                 </Button>
                 <p className="underline">Pas encore inscrit(e) ? <Link href="/sign_up">s'inscrire</Link> </p>
         
-            </div>
-
-            
+            </div>       
         </div>
     )
 }
