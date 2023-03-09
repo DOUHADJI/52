@@ -32,7 +32,7 @@ const SignIn =() => {
     
       const res = await getWithAxios('/user')
 
-     res.user? navigate('/dashboard') : null
+     res.user? navigate('/backoffice/accueil') : null
 
     
  

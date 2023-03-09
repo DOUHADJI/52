@@ -73,8 +73,7 @@ const Entrainement = () => {
 
 
     return(
-        <Layout>
-            <div className='bg-[#D9D9D9] mt-[90px] py-10 '>
+        <div className='bg-[#D9D9D9] mt-[90px] py-10 '>
                 <p className='text-center font-black text-lg underline'>Nom du Ludi</p>
                 <div className='flex justify-between px-12 font-black'>
                     <p>Spécialité : combat de char</p>
@@ -85,8 +84,7 @@ const Entrainement = () => {
                     {gladiators.map((g,index) => <GladiatorTraining key={index} nom={g.nom} talents={g.talents} />)}
                 </div>
 
-            </div>
-        </Layout>
+        </div>
     )
 }
 

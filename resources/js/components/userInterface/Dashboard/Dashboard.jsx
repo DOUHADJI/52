@@ -126,8 +126,7 @@ const Dashboard = () => {
 
 
     return(
-        <Layout>
-            <div className='pt-8'>
+        <div className='pt-8'>
                 <div className='bg-[#AC93DF] rounded-[15px] py-8 px-6'>
                     <p className='text-white font-bold text-2xl'>
                         Bienvenue,{' '}
@@ -167,8 +166,7 @@ const Dashboard = () => {
                         </div>)}
                     </div>
                 </div>
-            </div>
-        </Layout>
+        </div>
     )
 }
 

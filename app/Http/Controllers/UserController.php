@@ -139,12 +139,11 @@ class UserController extends Controller
             "pseudo" => "required",
             "email" => "required|email",
             "mot_de_passe" => ['required', Password::min(8)->mixedCase()],
-            "ecole" => "required",
-            "specialite" => "required"
+      
         ]);
 
-        $user_email_already_exits = User::where('email', $request -> email) -> first();
-        $user_pseudo_already_exits = User::where('pseudo', $request -> pseudo) -> first();
+        $user_email_already_exits = User::where('email', $request -> email) ->where('id','!=', Auth::id()) -> first();
+        $user_pseudo_already_exits = User::where('pseudo', $request -> pseudo) ->where('id','!=', Auth::id()) -> first();
 
       
 
@@ -175,16 +174,25 @@ class UserController extends Controller
         }
 
         if (Auth::check()) {
+
+            $check_if_user_password_is_correct = Hash::check($request->mot_de_passe, Auth::user()->password);
+
+            if(!$check_if_user_password_is_correct){
+                return response() ->json([
+                    "status"=>"success",
+                    "errors" =>[
+                        "mot_de_passe" => "mot de passe incorrect"
+                    ]
+                ]);
+            }
             // The user is logged in...
             $user = User::findOrFail( Auth::id());
 
             $user -> update([
-                'name' => $request -> name,
+                'nom' => $request -> nom,
+                'prenoms' =>$request -> prenoms,
+                'pseudo' => $request -> pseudo,
                 'email' => $request -> email,
-                'city' => $request -> city,
-                'country' =>$request -> country,
-                'address' => $request -> address,
-                'contact' => $request -> contact,
             ]);
 
             return response() -> json([

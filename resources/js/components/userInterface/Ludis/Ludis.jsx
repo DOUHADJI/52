@@ -26,8 +26,7 @@ const Ludis = () => {
     },[])
 
     return(
-        <Layout>
-            <div className="grid sm:grid-cols-2 justify-center items-center p-8 w-2/3">
+        <div className="grid sm:grid-cols-2 justify-center items-center p-8 w-2/3">
                 {ludis.map((e,index) => 
                     <Card 
                         key={index} 
@@ -48,7 +47,6 @@ const Ludis = () => {
                     </Card.Body>
                 </Card>)}
             </div>
-        </Layout>
     )
 }
 

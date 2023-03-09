@@ -45,7 +45,7 @@ const SignUp = () => {
 
     const handleInscriptionSuccessfull = () => {  
         setSignupSuccess(true)
-        setTimeout(()=>navigate('/dashboard'), 1500)
+        setTimeout(()=>navigate('/backoffice/accueil'), 1500)
     }
 
     return (

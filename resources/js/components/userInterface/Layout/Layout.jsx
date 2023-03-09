@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { getWithAxios, postWithAxios } from '../../api/axios';
 import { progressions } from '../../api/const';
 import { UserContext, UserContextProvider } from '../../userContext';
@@ -77,7 +77,7 @@ const Layout = ({children}) =>  {
                     </div>
                     
                     <div className='px-8'> 
-                        {children}
+                        <Outlet />
                     </div>
                 </div>
 

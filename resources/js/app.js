@@ -14,4 +14,6 @@ import './bootstrap';
 
 import './components/Index';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 

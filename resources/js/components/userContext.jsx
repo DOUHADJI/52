@@ -10,6 +10,8 @@ export const UserContextProvider = ({children}) => {
 
     const [user, setUser] =useState()
 
+    const context = {user, setUser}
+
     const getUser = async () => {
         const res = await getWithAxios('/user')
         
@@ -22,7 +24,7 @@ export const UserContextProvider = ({children}) => {
     },[])
 
     return(
-        <UserContext.Provider value={user}>
+        <UserContext.Provider value={context}>
             {children}
         </UserContext.Provider>
     )
