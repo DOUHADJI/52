@@ -34,6 +34,8 @@ Route::get('/sign_out', [UserController::class, "logout"]) -> middleware('auth:s
 
 Route::get('/get_user_ludis', [LudiController::class, 'get_user_ludis']) -> middleware('auth:sanctum');
 
+Route::post('/update_ludi', [LudiController::class, 'update']) -> middleware('auth:sanctum');
+
 Route::post('/get_ludi_gladiators', [GladiateurController::class, 'get_ludi_gladiators']) -> middleware('auth:sanctum');
 
 

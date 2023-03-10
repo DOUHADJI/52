@@ -16,9 +16,9 @@ const Ludis = () => {
         res.ludis ? setLudis(res.ludis) : setErrors(res.errors)
     }
 
-    const getLudiDetails = (ludiName) => {
+    const getLudiDetails = (ludiName, ludiSpecialite) => {
         
-        navigate('/backoffice/ludis/'+ludiName )
+        navigate('/backoffice/ludis/'+ludiName+'/'+ludiSpecialite)
     }
 
     useEffect(()=>{
@@ -33,7 +33,7 @@ const Ludis = () => {
                         isPressable 
                         isHoverable
                         css={{ background: "#F6F2F2" }}
-                        onClick={() =>getLudiDetails(e.nom)}
+                        onClick={() =>getLudiDetails(e.nom, e.specialite)}
                     >
                     <Card.Body>
                         <div>

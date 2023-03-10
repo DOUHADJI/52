@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { getWithAxios, postWithAxios } from '../../api/axios';
 import { progressions } from '../../api/const';
 import { UserContext, UserContextProvider } from '../../userContext';
@@ -53,6 +54,7 @@ const Layout = ({children}) =>  {
     return(
         <UserContextProvider>
             <div className="flex  p-6 ">
+            <ToastContainer/>
                 <SideBar />
                 <div className="bg-[#F0EDED] w-full rounded-r-[15px] text-md">
                     <div className='flex gap-10 justify-end pr-12 items-center bg-[#C08989] rounded-tr-[15px] h-[49px]'>
@@ -66,7 +68,7 @@ const Layout = ({children}) =>  {
 
                     </div>
                     
-                    <div className='px-8 min-w-[500px] bg-black p-12'> 
+                    <div className='px-8 min-w-[500px] p-12'> 
                         <Outlet />
                     </div>
                 </div>

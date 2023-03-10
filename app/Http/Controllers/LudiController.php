@@ -20,17 +20,48 @@ class LudiController extends Controller
                 -> groupBy('ludis.id') 
                 ->get(['ludis.id', 'ludis.nom', DB::raw('count(gladiateurs.id) as gladiateurs')]); */
 
-      
-
-
-  
 
         return response() -> json([
             "status" => "success",
             "message" => "liste des ludis de l'utilisateur",
             "ludis" => $ludis,
-           // "l" => $l
+          
           
         ]);
+    }
+
+    public function update(Request $request) {
+        $request -> validate([
+            'nom' =>'required',
+            'specialite'=> 'required'
+        ]);
+
+        $id = Auth::id();
+
+        $ludi = Ludi::where('user_id', $id) ->where("nom", $request -> ludiName)->first();
+
+        if($ludi){
+            $ludi -> update([
+                "nom" => $request -> nom,
+                "specialite" => $request -> specialite
+            ]);
+
+            return response() -> json([
+                "status" => "success",
+                "ludi" => $ludi
+            ]);
+        }
+
+
+        return response() -> json([
+            "status" => "success",
+            "errors" => [
+                "message" => "une erreur s'est produite"
+            ]
+        ]);
+
+
+
+
     }
 }

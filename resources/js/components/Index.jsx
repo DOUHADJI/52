@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "ludis/:ludiName",
+        path: "ludis/:ludiName/:ludiSpecialite",
         element: <Ludi/>
        
       },
