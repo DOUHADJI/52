@@ -19,9 +19,7 @@ class ProgressionDuJourController extends Controller
         //today's date
         $date = date('y-m-d');
 
-        //  convert
-        // date into dateTimestamp
-        $todayTimeStamp1 = strtotime($date);
+      
 
         $get_if_progressions_up_to_date = Progression_du_jour::where('expire_le', $date ) -> exists();
 

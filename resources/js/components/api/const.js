@@ -1,4 +1,4 @@
-import { getWithAxios, postWithAxios } from "./axios";
+
 
 export const specialites =  [
     {
@@ -14,10 +14,26 @@ export const specialites =  [
     }
 ]
 
+export const entrainements =  [
+    {
+        entrainement : "physique"
+    },
+
+    {
+        entrainement : "tactique"
+    },
+
+    {
+        entrainement : "combiné"
+    }
+]
+
+
+
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min + 1) + min); 
   }
 
 export const progressions =   [
@@ -67,7 +83,7 @@ export const progressions =   [
      {
         nom :  "entrainement_physique_lutte",
          valeur_du_jour:  getRandomIntInclusive(3,6),
-         specialite :  "lutte",
+         specialite :  "Lutte",
          type_entrainement :  "physique",
          valeur_min :  3,
          valeur_max :  6,
@@ -81,7 +97,7 @@ export const progressions =   [
      {
         nom :  "entrainement_tactique_lutte",
         valeur_du_jour:  getRandomIntInclusive(1,3),
-        specialite :  "lutte",
+        specialite :  "Lutte",
         type_entrainement :  "tactique",
         valeur_min :  1,
         valeur_max :  3,
@@ -95,7 +111,7 @@ export const progressions =   [
      {
         nom :  "entrainement_combiné_lutte",
         valeur_du_jour:  getRandomIntInclusive(1,5),
-        specialite :  "lutte",
+        specialite :  "Lutte",
         type_entrainement :  "combiné",
         valeur_min :  1,
         valeur_max :  5,
@@ -109,7 +125,7 @@ export const progressions =   [
     {
         nom :  "entrainement_physique_athletisme",
          valeur_du_jour:  getRandomIntInclusive(3,5),
-         specialite :  "athletisme",
+         specialite :  "Athletisme",
          type_entrainement :  "physique",
          valeur_min :  3,
          valeur_max :  5,
@@ -123,7 +139,7 @@ export const progressions =   [
     {
         nom :  "entrainement_tactique_athletisme",
         valeur_du_jour:  getRandomIntInclusive(2,3),
-        specialite :  "athletisme",
+        specialite :  "Athletisme",
         type_entrainement :  "tactique",
         valeur_min :  2,
         valeur_max :  3,
@@ -137,7 +153,7 @@ export const progressions =   [
      {
          nom :  "entrainement_combiné_athletisme",
          valeur_du_jour:  getRandomIntInclusive(3,9),
-         specialite :  "athletisme",
+         specialite :  "Athletisme",
          type_entrainement :  "combiné",
          valeur_min :  3,
          valeur_max :  9,

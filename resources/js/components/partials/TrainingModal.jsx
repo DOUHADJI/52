@@ -1,31 +1,51 @@
 import { Modal, Avatar, Button, Progress } from "@nextui-org/react"
 import { useState } from "react"
 import {BsFillCheckCircleFill, BsFillPersonFill} from 'react-icons/bs'
+import { toast } from "react-toastify"
+import { avatars } from "../api/avatars"
+import { putWithAxios } from "../api/axios"
+import { entrainements } from "../api/const"
+import TrainingSelection from "./trainingSelection"
 
-const TrainingModal = ({open, setOpen, nom}) => {
+const TrainingModal = ({open, setOpen, nom, avatarIndex, id}) => {
 
-    const [chooseTrainingVisibility, setChooseTrainingVisibility] = useState(true)
     const [isTrainingVisibility, setIsTrainingVisibility] = useState(false)
-    const [isTrainingFinish, setIsTrainingFinish] = useState(false)
+    const [errors, setErrors] = useState()
     const [progressValue, setProgressValue] = useState(0)
+    const [training, setTraining] = useState(null)
 
-    const [choosenTraining, setChoosenTraining] = useState(null)
+    
 
-    const handleChoosenTraining = (training) => {
-        setChoosenTraining(training)
-        setChooseTrainingVisibility(false)
-        setIsTrainingVisibility(true)
-    }
+  
 
     const handleClose = () => {
         setOpen(false)
     }
 
-    const handleProgress = () => {
-        setProgressValue(0)
-        setInterval(() => setProgressValue(progressValue+100), 1000)
-        setTimeout(()=> setIsTrainingFinish(true), 1000)
+    const notifySuccess = () => {
+       toast('Entrainement effectué avec success',{
+        type:'success',
+        hideProgressBar:true
+       })
     }
+
+    const handleSuccess = () => {
+        notifySuccess()
+        window.location.reload(true)
+    }
+
+    const updateGladiatorProgression = async () => {
+        const data ={
+            id : id,
+            entrainement : training
+        }
+
+        const res = await putWithAxios('/update_gladiator_progression', data)
+        res.errors? setErrors(res.errors) : handleSuccess()
+
+    }
+
+
     return (
         <Modal 
             open={open} 
@@ -35,62 +55,26 @@ const TrainingModal = ({open, setOpen, nom}) => {
         >
             <Modal.Body>
                 <div className="flex gap-12 items-center justify-center">
-                    <Avatar icon={ <BsFillPersonFill size={"lg"}  /> } size={"xl"}   />
-                    <p className="font-bold text-lg">
-                        {nom}
-                    </p>
+                    <Avatar src={avatars[avatarIndex]?.avatar} size={"xl"}   />
                 </div>
-                <div hidden={!chooseTrainingVisibility}>
-                  
-                    <div className="flex flex-wrap justify-center gap-6 mt-6">
-                        <Button 
-                            auto 
-                            size={"xl"} 
-                            css={{ background:"#542188" }}
-                            onPress={()=>{
-                                handleChoosenTraining("Entrainement physique")
-                                handleProgress()
-                            }}
-                        >
-                            <p className="text-sm font-bold text-start">
-                                Entrainement <br /> physqiue
-                            </p>
-                        </Button>
 
-                        <Button 
-                            auto 
-                            size={"xl"} 
-                            css={{ background:"#7674CB" }}
-                            onPress={()=>{
-                                handleChoosenTraining("Entrainement tactique")
-                                handleProgress()
-                            }}
-                        >
-                            <p className="text-sm font-bold text-start">
-                                Entrainement <br /> tactique
-                            </p>
-                        </Button>
+                <TrainingSelection
+                    label={'Entrainer ' +nom}
+                    training={training}
+                    setTraining={setTraining}
+                    options={entrainements}
+                    error={errors?.entrainement}
 
-                        <Button 
-                            auto 
-                            size={"xl"} 
-                            css={{ background:"#E489AF" }}
-                            onPress={()=>{
-                                handleChoosenTraining("Entrainement combiné")
-                                handleProgress()
-                            }}
-                        >
-                            <p className="text-sm font-bold text-start">
-                                Entrainement <br /> combiné
-                            </p>
-                        </Button>
-                        
-                    </div>
-                </div>
+
+                />
+
+                <Button onPress={updateGladiatorProgression}>
+                    Valider
+                </Button>
 
                 <div hidden={!isTrainingVisibility}>
                     <p className="text-[#8F3A3A] text-lg font-bold text-center mb-8">
-                        {choosenTraining}
+                        {training}
                     </p>
 
                     <Progress squared size={"sm"}  value={progressValue} color="success"  />
@@ -103,6 +87,7 @@ const TrainingModal = ({open, setOpen, nom}) => {
                     </div>
 
                 </div>
+
             </Modal.Body>
         </Modal>
     )

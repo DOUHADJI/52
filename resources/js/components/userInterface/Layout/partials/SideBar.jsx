@@ -29,12 +29,6 @@ const SideBar = () => {
         },
 
         {
-            label : 'Entrainement',
-            url : "/backoffice/entrainement"
-
-        },
-
-        {
             label : 'Recrutement',
             url : "/backoffice/recrutement"
 

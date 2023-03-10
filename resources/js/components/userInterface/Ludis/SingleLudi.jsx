@@ -1,37 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import Layout from "../Layout/layout"
-import GladiatorInfos from '../../partials/gladiatorInfos';
+import GladiatorInfos from '../../partials/gladiator';
 import { Button } from '@nextui-org/react';
 import { useParams } from 'react-router-dom';
 import { postWithAxios } from '../../api/axios';
 import { BsEmojiFrown } from 'react-icons/bs';
 import UpdateLudiModal from './updateLudiModal';
-import { ToastContainer } from 'react-toastify';
+import NewGladiatorModal from './newGladiatorModal';
 
 
 const Ludi = () => {
 
    
     const params = useParams()
-    const {ludiName, ludiSpecialite} = params
+    const {ludiName, ludiSpecialite, ludiId} = params
 
     const [gladiateurs, setGladiateurs] = useState()
 
     const[updateLudiModalIsVisible, setUpdateLudiModalIsVisible] =useState(false)
+    const[newAvatarModalIsVisible, setNewAvatarModalIsVisible] =useState(false)
 
     const handleUpdateLudiModalVisibility = () => {
         setUpdateLudiModalIsVisible(true)
     }
 
+    const handleNewAvatarModalVisibility = () => {
+        setNewAvatarModalIsVisible(true)
+    }
+
     const getGladiatorsOfTheLudi = async() => {
         const data = {
-            ludiName: ludiName
+            ludiName: ludiName,
+            ludiId : ludiId
         }
         const res =await postWithAxios('/get_ludi_gladiators', data)
 
         setGladiateurs(res.gladiateurs)
-
-        
+ 
     }
 
     useEffect(()=> {
@@ -48,10 +52,20 @@ const Ludi = () => {
                     </p>
                 </div>
 
-                <div className='grid lg:grid-cols-2 gap-12 mt-[50px] px-12'>
+                <div className='grid lg:grid-cols-2 md:grid-cols-1 gap-12 mt-[50px] px-12'>
                     {gladiateurs?.length>0? 
                         gladiateurs.map((g,index) => 
-                            <GladiatorInfos key={index} nom={g.nom} talents={g.talents} />) 
+                            <GladiatorInfos 
+                                key={index} 
+                                nom={g.nom} 
+                                adresse={g.adresse}
+                                force={g.force} 
+                                equilibre={g.equilibre}
+                                vitesse={g.vitesse}
+                                strategie={g.strategie}
+                                avatarIndex={g.avatar}
+                                id={g.id}
+                            />) 
                             : <p className='flex items-center gap-2 text-lg w-full'>
                                 <span>Vous n'avez aucun gladiateur dans votre école</span>
                                 <span>
@@ -60,20 +74,20 @@ const Ludi = () => {
                                 </p>}
                 </div>
 
-                <div className=' flex justify-end mt-12 pr-12 gap-8'>
-                    <Button color={"error"} size="lg"flat onPress={handleUpdateLudiModalVisibility}>
-                        <span className='font-bold'>
+                <div className=' grid  lg:grid-cols-3  mt-12 px-6 gap-4'>
+                    <Button auto color={"error"} size="lg"flat onPress={handleUpdateLudiModalVisibility}>
+                        <span className='font-bold '>
                             Modifier les information de l'école
                         </span>
                     </Button>
 
-                    <Button color={"primary"} size="lg">
+                    <Button auto color={"primary"} size="lg" onPress={handleNewAvatarModalVisibility}>
                         <span className='font-bold'>
                             Créer un gladiateur
                         </span>
                     </Button>
 
-                    <Button color={"secondary"} size="lg">
+                    <Button auto color={"secondary"} size="lg">
                         <span className='font-bold'>
                             Recruter un gladiateur
                         </span>
@@ -84,6 +98,15 @@ const Ludi = () => {
                         updateLudiModalIsVisible={updateLudiModalIsVisible}
                         setUpdateLudiModalIsVisible={setUpdateLudiModalIsVisible}
                         ludiName={ludiName}
+                        id={ludiId}
+                     />
+
+                     <NewGladiatorModal
+                        newAvatarModalIsVisible={newAvatarModalIsVisible}
+                        setNewAvatarModalIsVisible={setNewAvatarModalIsVisible}
+                        ludiName={ludiName}
+                        ludiId={ludiId}
+
                      />
             </div>
     )

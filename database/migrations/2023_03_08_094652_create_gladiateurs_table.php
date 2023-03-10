@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('nom');
             $table->string('avatar');
             $table->boolean('recrutable');
-            $table->integer('adresse');
-            $table->integer('force');
-            $table->integer('equilibre');
-            $table->integer('vitesse');
-            $table->integer('strategie');
-            $table->foreignId('ludi_id')->nullable()-> constrained('ludis') ->nullOnDelete();
+            $table->decimal('adresse');
+            $table->decimal('force');
+            $table->decimal('equilibre');
+            $table->decimal('vitesse');
+            $table->decimal('strategie');
+            $table->foreignId('ludi_id')-> constrained('ludis');
             $table->timestamps();
         });
 

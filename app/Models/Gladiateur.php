@@ -10,6 +10,18 @@ class Gladiateur extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nom',
+        'avatar',
+        'recrutable',
+        'adresse',
+        'force',
+        'equilibre',
+        'vitesse',
+        'strategie',
+        'ludi_id'
+    ];
+
     /**
      * Récupérer le ludi auquel appartient les gladiateurs
      */

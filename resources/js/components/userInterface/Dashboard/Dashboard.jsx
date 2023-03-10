@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import { postWithAxios } from '../../api/axios';
+import { BsEmojiFrown } from 'react-icons/bs';
+import { getWithAxios, postWithAxios } from '../../api/axios';
 import { progressions } from '../../api/const';
-import GladiatorInfos from '../../partials/gladiatorInfos';
+import GladiatorInfos from '../../partials/gladiator';
 import PJCard from '../../partials/pjCard';
 import { UserContext } from '../../userContext';
 
@@ -78,6 +79,7 @@ const Dashboard = () => {
     const [charPrgrs, setCharPrgrs] =useState()
     const [luttePrgrs, setLuttePrgrs] =useState()
     const [athletismePrgrs, setAthletismePrgrs] =useState()
+    const [gladiateurs, setGladiateurs] = useState()
 
 
 
@@ -101,17 +103,36 @@ const Dashboard = () => {
 
     const setLutteSpecialitePjs = () => {
         const res = prgrs?.filter((item) =>
-        item?.specialite.match('lutte'),
+        item?.specialite.match('Lutte'),
         )   
         setLuttePrgrs(res)
     }
 
     const setAthletismeSpecialitePjs = () => {
         const res = prgrs?.filter((item) =>
-        item?.specialite.match('athletisme'),
+        item?.specialite.match('Athletisme'),
         )   
         setAthletismePrgrs(res)
     }
+
+    const getGladiatorsOfTheLudi = async() => {
+
+        const {ludis} = await getWithAxios('/get_user_ludis')
+
+        const data = {
+            ludiName: ludis[0].nom,
+            ludiId : ludis[0].id
+    }
+
+    
+
+        const res =await postWithAxios('/get_ludi_gladiators', data)
+       
+        setGladiateurs(res.gladiateurs)
+ 
+    }
+
+
 
     useEffect(()=>{
         setDailyProgressions()
@@ -128,6 +149,10 @@ const Dashboard = () => {
     useEffect(()=>{
         setAthletismeSpecialitePjs()
     },[prgrs])
+
+    useEffect(()=> {
+        getGladiatorsOfTheLudi()
+    },[])
 
 
 
@@ -152,8 +177,26 @@ const Dashboard = () => {
 
                 </div>
 
-                <div className='grid grid-cols-3 gap-12 mt-[70px]'>
-                    {gladiators.map((g,index) => <GladiatorInfos key={index} nom={g.nom} talents={g.talents} />)}
+                <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-12 mt-[70px]'>
+                {gladiateurs?.length>0? 
+                        gladiateurs.map((g,index) => 
+                            <GladiatorInfos 
+                                key={index} 
+                                nom={g.nom} 
+                                adresse={g.adresse}
+                                force={g.force} 
+                                equilibre={g.equilibre}
+                                vitesse={g.vitesse}
+                                strategie={g.strategie}
+                                avatarIndex={g.avatar}
+                                id={g.id}
+                            />) 
+                            : <p className='flex items-center gap-2 text-lg w-full'>
+                                <span>Vous n'avez aucun gladiateur dans votre école</span>
+                                <span>
+                                    <BsEmojiFrown className='text-3xl'/>
+                                </span>
+                                </p>}
                 </div>
 
                 <div className='mt-[60px]'>

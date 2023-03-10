@@ -1,13 +1,17 @@
 import { Button, Grid, Input, Text } from "@nextui-org/react"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { BsPerson } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-import { postWithAxios } from "../../api/axios"
+import { postWithAxios, putWithAxios } from "../../api/axios"
+import { UserContext } from "../../userContext"
 
 
 const UpdatePassword = () => {
    
+    const {user, setUser} = useContext(UserContext)
+
+    const id = user?.id
 
     const [password, setPassword] = useState()
     const [newPassword, setNewPassword] = useState()
@@ -52,9 +56,10 @@ const UpdatePassword = () => {
         const data = {
             password: password,
             newPassword: newPassword,
-            newPassword_confirmation: confirmedPassword
+            newPassword_confirmation: confirmedPassword,
+            id: id
         }
-        const res = await postWithAxios('/change_password', data)
+        const res = await putWithAxios('/change_password', data)
  
         res.errors ? setErrors(res.errors) : updateSuccessfull(res.user)
 

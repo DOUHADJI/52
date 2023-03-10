@@ -31,14 +31,16 @@ class LudiController extends Controller
     }
 
     public function update(Request $request) {
+
         $request -> validate([
             'nom' =>'required',
-            'specialite'=> 'required'
+            'specialite'=> 'required',
+            'id' => 'required'
         ]);
 
         $id = Auth::id();
 
-        $ludi = Ludi::where('user_id', $id) ->where("nom", $request -> ludiName)->first();
+        $ludi = Ludi::whereId($id) ->first();
 
         if($ludi){
             $ludi -> update([

@@ -53,7 +53,7 @@ const Layout = ({children}) =>  {
     
     return(
         <UserContextProvider>
-            <div className="flex  p-6 ">
+            <div className="flex w-full p-6 ">
             <ToastContainer/>
                 <SideBar />
                 <div className="bg-[#F0EDED] w-full rounded-r-[15px] text-md">
@@ -68,7 +68,7 @@ const Layout = ({children}) =>  {
 
                     </div>
                     
-                    <div className='px-8 min-w-[500px] p-12'> 
+                    <div className='px-8 w-full p-12'> 
                         <Outlet />
                     </div>
                 </div>

@@ -21,19 +21,20 @@ const SignIn =() => {
 
     await getCsrfToken()
     const res = await postWithAxios('/sign_in', credentials)
-   
-
-    res.status == "success" ?  navigate('/backoffice/accueil')  : setErrors(res.errors)
+    const user = res.user
+    const url ='/backoffice/accueil'
+    res.status == "success" ?  navigate(url)  : setErrors(res.errors)
   
 
    }
 
    const redirectToDashboard = async () => {
     
-      const res = await getWithAxios('/user')
+        const res = await getWithAxios('/user')
 
-      console.log(res)
-     res.user? navigate('/backoffice/accueil') : null
+        const url ='/backoffice/accueil'
+
+        res.user? navigate(url) : null
     
  
     }

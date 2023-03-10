@@ -1,73 +1,72 @@
 import { Button, Input, Modal } from "@nextui-org/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
-import { postWithAxios, putWithAxios } from "../../api/axios"
-import { specialites } from "../../api/const"
-import Selection from "../../partials/selection"
+import { avatars } from "../../api/avatars"
+import { postWithAxios } from "../../api/axios"
+import AvatarSelection from "../../partials/avatarSelection"
 
-const UpdateLudiModal = ({
-    updateLudiModalIsVisible, 
-    setUpdateLudiModalIsVisible, 
-    ludiName, 
-    id
-    }) => {
+const NewGladiatorModal = ({newAvatarModalIsVisible,setNewAvatarModalIsVisible,ludiName, ludiId}) => {
 
-    const [nom,setNom] =useState(ludiName)
-    const [specialite, setSpecialite] = useState()
+    const [nom, setNom] =useState()
+    const [avatarIndex, setAvatarIndex] = useState()
     const [errors, setErrors] = useState()
     const navigate = useNavigate()
 
+   
     const getName = (e) => {
         const value = e.target.value
         setNom(value)
     }
 
     const updateSuccessfull = () => {
-       toast("Les informations de l'école ont été modifiée avec success", {
+       toast("Gladiateur créé avec success", {
         type:"success",
         hideProgressBar:true
        })
-       setUpdateLudiModalIsVisible(false)
+       setNewAvatarModalIsVisible(false)
        navigate('/backoffice/ludis')
         window.location.reload(true)
         
     }
 
-    const handleUpdate = async ( ) =>{
+    const handleCreation = async ( ) =>{
         const data = {
             nom : nom,
-            specialite : specialite,
+            avatar : avatarIndex,
             ludiName: ludiName,
-            id: id
+            ludiId: ludiId
         }
 
-        
-        const res = await putWithAxios('/update_ludi', data)
+    
+       
+
+        const res = await postWithAxios('/create_gladiateur', data)
 
         res.errors?setErrors(res.errors) : updateSuccessfull()
 
-   
+       
     }
+
 
 
     return(
         <Modal 
-            open={updateLudiModalIsVisible}
+            open={newAvatarModalIsVisible}
             preventClose
             closeButton
-            onClose={() => setUpdateLudiModalIsVisible(false)}
+            onClose={() => setNewAvatarModalIsVisible(false)}
            
         >
             <Modal.Body>
                 <div className="grid gap-6 justify-center items-center h-full">
-                <p className="text-xl font-bold mb-2">Ecole de gladiateurs:  {ludiName}</p>
+                <p className="text-xl font-bold mb-2">Créer un nouvel avatar</p>
                 <p className="font-light mb-2 text-red-600 text-center">{errors?.message}</p>
                     <div >
-                        <p className="font-bold mb-2">Modifier le nom de l'école</p>
+                        <p className="font-bold mb-2">Nom de l'avatar</p>
                         <Input
-                            aria-label="Modifier le nom de l'école"
-                            placeholder={ludiName}
+                            aria-label="Nom du nouvel avatar"
+                            placeholder={"nom de l'avatar"}
                             size="xl"
                             className="w-full w-[20px]"
                             css={{ width:"300px",height:"60px" }}
@@ -77,16 +76,16 @@ const UpdateLudiModal = ({
                         <p className="font-light mb-2 text-red-600">{errors?.nom}</p>
                     </div>
 
-                    <Selection 
-                        label={"Spécialité de l'école"} 
-                        setSpecialite={setSpecialite} 
-                        specialite={specialite}
-                        options={specialites}
-                        error={errors?.specialite}
+                    <AvatarSelection
+                        label={"Avatars de gladiateur"} 
+                        setAvatarIndex={setAvatarIndex} 
+                        avatarIndex={avatarIndex}
+                        options={avatars}
+                        error={errors?.avatar}
                     />
                     
                     <div className="flex justify-end">
-                        <Button onPress={handleUpdate}>
+                        <Button onPress={handleCreation}>
                             Enregister
                         </Button>
                     </div>
@@ -96,4 +95,4 @@ const UpdateLudiModal = ({
     )
 }
 
-export default UpdateLudiModal
+export default NewGladiatorModal

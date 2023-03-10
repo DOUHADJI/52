@@ -9,8 +9,6 @@ import SignUp from "./signUp";
 import Dashboard from "./userInterface/dashboard/dashboard";
 import Ludis from "./userInterface/Ludis/Ludis";
 import Welcome from "./Welcome";
-import Entrainement from "./userInterface/entrainement/entrainement";
-import { UserContextProvider } from "./userContext";
 import Parametres from "./userInterface/parametres/parametres";
 import UpdateProfil from "./userInterface/parametres/updateProfil";
 import Layout from "./userInterface/Layout/layout";
@@ -53,15 +51,11 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "ludis/:ludiName/:ludiSpecialite",
+        path: "ludis/:ludiId/:ludiName/:ludiSpecialite",
         element: <Ludi/>
        
       },
 
-      {
-        path: "entrainement",
-        element: <Entrainement />
-      },
     
       {
         path: "mon_compte",

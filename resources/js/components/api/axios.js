@@ -48,27 +48,20 @@ export const postWithAxios = async (url, dataToSend) => {
   }
 }
 
+export const putWithAxios = async (url, dataToSend) => {
+ 
+  try {
+    const { data } = await axiosInstance().put(url, dataToSend)
+    return data
+  } catch (error) {
+    return error.response.data
+  }
+}
+
 export const getUserFromAPI = async () => {
   const res = await getWithAxios('/user')
   return res
 }
 
-export const getUserLudisFromAPI = async ({userId}) => {
-  const { Ludis } = await getWithAxios('/ludis')
-  return ludis
-}
 
-export const getCookieValue = (tokenName) => {
-  const token = document.cookie
 
-  if (token !== '') {
-    token
-      .split('; ')
-      .find((row) => row.startsWith(tokenName + '='))
-      .split('=')[1]
-
-    return token
-  } else {
-    return token
-  }
-}

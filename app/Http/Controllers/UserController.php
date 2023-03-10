@@ -27,6 +27,7 @@ class UserController extends Controller
 
         $user_email_already_exits = User::where('email', $request -> email) -> first();
         $user_pseudo_already_exits = User::where('pseudo', $request -> pseudo) -> first();
+        $ludi_name_already_exits = Ludi::where('nom', $request -> ecole) -> first();
 
       
 
@@ -47,6 +48,19 @@ class UserController extends Controller
 
             $error =  [
                 'pseudo' => "Le pseudo existe déjà"
+            ];
+               
+    
+            return response() -> json([
+                "status" => "success",
+                "errors" =>  $error
+            ]);
+        }
+
+        if($ludi_name_already_exits){
+
+            $error =  [
+                'ecole' => "Cet nom d'école existe déjà"
             ];
                
     
@@ -139,6 +153,7 @@ class UserController extends Controller
             "pseudo" => "required",
             "email" => "required|email",
             "mot_de_passe" => ['required', Password::min(8)->mixedCase()],
+            "id" => "required"
       
         ]);
 
@@ -185,8 +200,9 @@ class UserController extends Controller
                     ]
                 ]);
             }
-            // The user is logged in...
-            $user = User::findOrFail( Auth::id());
+            
+            $id=$request ->id;
+            $user = User::findOrFail( $id);
 
             $user -> update([
                 'nom' => $request -> nom,
@@ -221,6 +237,7 @@ class UserController extends Controller
             "password"=> ['required', Password::min(8)->mixedCase()],
             "newPassword"=> ['required', Password::min(8)->mixedCase()],
             "newPassword_confirmation"=> ['required', Password::min(8)->mixedCase()],
+            "id"=> $request->id
         ]);
 
         $check_if_user_password_is_correct = Hash::check($request->password, Auth::user()->password);
@@ -234,10 +251,12 @@ class UserController extends Controller
             ]);
         }
 
-         $user = Auth::user();
+         $user = User::whereId($request->id);
+
+         $password = $request -> newPassword;
 
          $user ->update([
-            "password" => $request -> newPassword
+            "password" => Hash::make($password)
          ]);
 
          Auth::guard('web')->logout();

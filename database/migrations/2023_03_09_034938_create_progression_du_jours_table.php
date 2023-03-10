@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('type_entrainement');
             $table->integer('valeur_min');
             $table->integer('valeur_max');
-            $table->integer('marge_adresse');
-            $table->integer('marge_force');
-            $table->integer('marge_equilibre');
-            $table->integer('marge_vitesse');
-            $table->integer('marge_strategie');
+            $table->decimal('marge_adresse');
+            $table->decimal('marge_force');
+            $table->decimal('marge_equilibre');
+            $table->decimal('marge_vitesse');
+            $table->decimal('marge_strategie');
             $table->date('expire_le');
             $table->timestamps();
 

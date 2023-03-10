@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from 'react'
 import { BsPerson } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
-import { postWithAxios } from '../../api/axios'
+import { postWithAxios, putWithAxios } from '../../api/axios'
 import { UserContext } from '../../userContext'
 
 
@@ -74,11 +74,15 @@ const UpdateProfil = () => {
   const updateUserInformations = async () => {
 
 
-    const res = await postWithAxios('/update_user_informations', userInformations)
+    const res = await putWithAxios('/update_user_informations', userInformations)
 
     res.errors ? setErrors(res.errors) : updateSuccessfull(res.user)
 
   }
+
+  const returnBack = () => {
+    navigate('/backoffice/mon_compte/informations_utilisateur')
+}
 
   useEffect(()=>{
     setUserInformations(user)
@@ -206,7 +210,7 @@ const UpdateProfil = () => {
           auto
           type={null}
           className="bg-red-600 text-white dark:bg-red-800 text-gray-300"
-          onClick={() => hideUpdateForm(false)}
+          onClick={returnBack}
         >
           <p className="text-white">retour</p>
         </Button>
