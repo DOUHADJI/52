@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('equilibre');
             $table->decimal('vitesse');
             $table->decimal('strategie');
-            $table->foreignId('ludi_id')-> constrained('ludis');
+            $table->foreignId('ludi_id')->nullable() -> constrained('ludis');
             $table->timestamps();
         });
 
