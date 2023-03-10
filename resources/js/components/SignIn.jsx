@@ -2,7 +2,7 @@ import { Button, Link } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCsrfToken, getWithAxios, postWithAxios } from "./api/axios";
-import InputWithoutLabel from "./partials/InputWithoutLabel";
+import InputWithoutLabel from "./partials/inputWithoutLabel";
 
 const SignIn =() => {
    const [email, setEmail] = useState()
@@ -17,7 +17,7 @@ const SignIn =() => {
         password : password
     }
 
-    console.log(credentials)
+
 
     await getCsrfToken()
     const res = await postWithAxios('/sign_in', credentials)
@@ -32,8 +32,8 @@ const SignIn =() => {
     
       const res = await getWithAxios('/user')
 
+      console.log(res)
      res.user? navigate('/backoffice/accueil') : null
-
     
  
     }

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
-import Layout from "../Layout/Layout"
-import Profil from "./Profil"
+import Layout from "../Layout/layout"
+import Profil from "./profil"
 import UpdateProfil from "./updateProfil"
 
 const Parametres = () => {

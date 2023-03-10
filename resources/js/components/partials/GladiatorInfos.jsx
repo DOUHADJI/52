@@ -1,11 +1,14 @@
-import { Avatar } from "@nextui-org/react"
+import { Avatar, Card } from "@nextui-org/react"
 import {BsFillPersonFill} from 'react-icons/bs'
+import img from '../../../../public/img/avatar.png'
 
 const GladiatorInfos = ({nom, talents}) => {
     return (
-        <div className="bg-[#F6F2F2] rounded-[15px] text-black p-8">
+        <Card  className="w-[150px] ">
+            <Card.Body css={{ background:"#F6F2F2" }}>
+        <div className="bg-[#F6F2F2] rounded-[15px] text-black p-8 ">
             <div className="flex gap-12 items-center">
-               <Avatar icon={ <BsFillPersonFill size={"lg"}  /> } size={"xl"}   />
+               <Avatar src={img} size={"xl"} /> 
                 <p className="font-bold text-lg">
                     {nom}
                 </p>
@@ -22,6 +25,8 @@ const GladiatorInfos = ({nom, talents}) => {
             </div>
 
         </div>
+            </Card.Body>
+        </Card>
     )
 }
 

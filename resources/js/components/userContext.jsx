@@ -1,6 +1,6 @@
 import {createContext, useEffect, useState } from "react";
 import { getWithAxios } from "./api/axios";
-import Layout from "./userInterface/Layout/Layout";
+import Layout from "./userInterface/Layout/layout";
 
 
 export const UserContext = createContext()

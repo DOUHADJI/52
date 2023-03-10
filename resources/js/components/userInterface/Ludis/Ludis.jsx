@@ -1,7 +1,7 @@
 import { Card } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { getWithAxios, postWithAxios } from "../../api/axios"
-import Layout from "../Layout/Layout"
+import Layout from "../Layout/layout"
 import { BiBuildingHouse } from 'react-icons/bi'
 import { useNavigate } from "react-router-dom"
 
@@ -16,9 +16,9 @@ const Ludis = () => {
         res.ludis ? setLudis(res.ludis) : setErrors(res.errors)
     }
 
-    const getLudiDetails = (ludiId) => {
+    const getLudiDetails = (ludiName) => {
         
-        navigate('/ludis', ludiId )
+        navigate('/backoffice/ludis/'+ludiName )
     }
 
     useEffect(()=>{
@@ -33,7 +33,7 @@ const Ludis = () => {
                         isPressable 
                         isHoverable
                         css={{ background: "#F6F2F2" }}
-                        onClick={() =>getLudiDetails(e.id)}
+                        onClick={() =>getLudiDetails(e.nom)}
                     >
                     <Card.Body>
                         <div>

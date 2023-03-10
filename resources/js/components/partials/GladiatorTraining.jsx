@@ -1,7 +1,7 @@
 import { Avatar, Button } from "@nextui-org/react"
 import { useState } from "react"
 import {BsFillPersonFill} from 'react-icons/bs'
-import TrainingModal from "./TrainingModal"
+import TrainingModal from "./trainingModal"
 
 const GladiatorTraining = ({nom, talents}) => {
 

@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { getWithAxios } from "../../../api/axios"
 import { UserContext } from "../../../userContext"
-import SideBarBtn from "./SideBarBtn"
+import SideBarBtn from "./sideBarBtn"
 
 
 const SideBar = () => {

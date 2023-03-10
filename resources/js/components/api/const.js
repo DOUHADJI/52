@@ -1,3 +1,4 @@
+import { getWithAxios, postWithAxios } from "./axios";
 
 export const specialites =  [
     {
@@ -25,7 +26,7 @@ export const progressions =   [
      nom  : "entrainement_physique_char",
      valeur_du_jour :  getRandomIntInclusive(2,4),
      specialite:  "Course de char",
-     type_entrainement :  "EP",
+     type_entrainement :  "physique",
      valeur_min :  2,
      valeur_max :  4,
      marge_adresse :  0.4,
@@ -39,7 +40,7 @@ export const progressions =   [
          nom :  "entrainement_tactique_char",
          valeur_du_jour:  getRandomIntInclusive(3,6),
          specialite  :  "Course de char",
-         type_entrainement :  "ET",
+         type_entrainement :  "tactique",
          valeur_min :  3,
          valeur_max :  6,
          marge_adresse :  0.4,
@@ -53,7 +54,7 @@ export const progressions =   [
          nom :  "entrainement_combiné_char",
          valeur_du_jour:  getRandomIntInclusive(2,7),
          specialite :  "Course de char",
-         type_entrainement :  "EC",
+         type_entrainement :  "combiné",
          valeur_min :  2,
          valeur_max :  7,
          marge_adresse :  0.4,
@@ -66,8 +67,8 @@ export const progressions =   [
      {
         nom :  "entrainement_physique_lutte",
          valeur_du_jour:  getRandomIntInclusive(3,6),
-         specialite :  "Course de char",
-         type_entrainement :  "EP",
+         specialite :  "lutte",
+         type_entrainement :  "physique",
          valeur_min :  3,
          valeur_max :  6,
          marge_adresse :  0.4,
@@ -80,8 +81,8 @@ export const progressions =   [
      {
         nom :  "entrainement_tactique_lutte",
         valeur_du_jour:  getRandomIntInclusive(1,3),
-        specialite :  "Course de char",
-        type_entrainement :  "ET",
+        specialite :  "lutte",
+        type_entrainement :  "tactique",
         valeur_min :  1,
         valeur_max :  3,
         marge_adresse :  0.4,
@@ -94,8 +95,8 @@ export const progressions =   [
      {
         nom :  "entrainement_combiné_lutte",
         valeur_du_jour:  getRandomIntInclusive(1,5),
-        specialite :  "Course de char",
-        type_entrainement :  "EC",
+        specialite :  "lutte",
+        type_entrainement :  "combiné",
         valeur_min :  1,
         valeur_max :  5,
         marge_adresse :  0.4,
@@ -108,8 +109,8 @@ export const progressions =   [
     {
         nom :  "entrainement_physique_athletisme",
          valeur_du_jour:  getRandomIntInclusive(3,5),
-         specialite :  "Course de char",
-         type_entrainement :  "EP",
+         specialite :  "athletisme",
+         type_entrainement :  "physique",
          valeur_min :  3,
          valeur_max :  5,
          marge_adresse :  0.4,
@@ -122,8 +123,8 @@ export const progressions =   [
     {
         nom :  "entrainement_tactique_athletisme",
         valeur_du_jour:  getRandomIntInclusive(2,3),
-        specialite :  "Course de char",
-        type_entrainement :  "ET",
+        specialite :  "athletisme",
+        type_entrainement :  "tactique",
         valeur_min :  2,
         valeur_max :  3,
         marge_adresse :  0.4,
@@ -136,8 +137,8 @@ export const progressions =   [
      {
          nom :  "entrainement_combiné_athletisme",
          valeur_du_jour:  getRandomIntInclusive(3,9),
-         specialite :  "Course de char",
-         type_entrainement :  "EC",
+         specialite :  "athletisme",
+         type_entrainement :  "combiné",
          valeur_min :  3,
          valeur_max :  9,
          marge_adresse :  0.4,
@@ -147,3 +148,5 @@ export const progressions =   [
          marge_strategie :  0.2,
      }
  ];
+
+

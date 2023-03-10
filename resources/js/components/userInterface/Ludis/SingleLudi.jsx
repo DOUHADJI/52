@@ -1,7 +1,9 @@
-import React from 'react';
-import Layout from "../Layout/Layout"
-import GladiatorInfos from '../../partials/GladiatorInfos';
+import React, { useEffect, useState } from 'react';
+import Layout from "../Layout/layout"
+import GladiatorInfos from '../../partials/gladiatorInfos';
 import { Button } from '@nextui-org/react';
+import { useParams } from 'react-router-dom';
+import { postWithAxios } from '../../api/axios';
 
 
 const Ludi = () => {
@@ -69,19 +71,37 @@ const Ludi = () => {
 
     
     ]
+    const params = useParams()
+    const ludiName = params.ludiName
 
-    
+    const [gladiateurs, setGladiateurs] = useState()
+
+    const getGladiatorsOfTheLudi = async() => {
+        const data = {
+            ludiName: ludiName
+        }
+        const res =await postWithAxios('/get_ludi_gladiators', data)
+
+        setGladiateurs(res.gladiateurs)
+
+        console.log(res)
+    }
+
+    useEffect(()=> {
+        getGladiatorsOfTheLudi()
+    },[])
     
     return(
-        <Layout>
-            <div className='bg-[#D9D9D9] mt-[90px] py-10 '>
-                <p className='text-center font-black text-lg underline'>Nom du ludi</p>
-                <div className='flex justify-between px-12 font-black'>
-                    <p>Spécialité : combat de char</p>
-                    <p><span className='text-2xl'>02</span>/10 gladiateurs</p>
+        <div className='bg-[#D9D9D9] mt-[90px] py-10 '>
+                <p className='text-center font-black text-lg underline mb-12'>Ecole de gladiateur : {ludiName}</p>
+                <div className='grid md:grid-cols-2 px-12 font-black '>
+                    <p className='w-full'>Spécialité : combat de char</p>
+                    <p className='text-end'>
+                        <span className='text-2xl  w-full'>02</span>/10 gladiateurs
+                    </p>
                 </div>
 
-                <div className='grid grid-cols-3 gap-12 mt-[50px] px-12'>
+                <div className='grid lg:grid-cols-2 gap-12 mt-[50px] px-12'>
                     {gladiators.map((g,index) => <GladiatorInfos key={index} nom={g.nom} talents={g.talents} />)}
                 </div>
 
@@ -94,7 +114,6 @@ const Ludi = () => {
                 </div>
 
             </div>
-        </Layout>
     )
 }
 

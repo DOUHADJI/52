@@ -5,8 +5,13 @@ const PJCard = ({cardHexColorIndex, typeEntrainement, valeur}) => {
     const cardHexColor = [
         "bg-[#542188]",
         "bg-[#7674CB]",
+        "bg-[#E489AF]",
+        "bg-[#542188]",
+        "bg-[#7674CB]",
+        "bg-[#E489AF]",
+        "bg-[#542188]",
+        "bg-[#7674CB]",
         "bg-[#E489AF]"
-
 
     ]
 
@@ -18,7 +23,7 @@ const PJCard = ({cardHexColorIndex, typeEntrainement, valeur}) => {
                     Entrainement <br /> 
                     {typeEntrainement}
                     </p>
-                    <Avatar squared icon={<span className="text-sm">{valeur}</span>} className="font-bold" />
+                    <Avatar squared icon={<span className="text-md font-bold">{valeur}</span>} className="font-bold" />
                 </div>
             </Card.Body>
                

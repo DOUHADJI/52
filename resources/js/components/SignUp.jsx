@@ -4,8 +4,8 @@ import { BsFillCheckSquareFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { getCsrfToken, postWithAxios } from './api/axios';
 import { specialites } from './api/const';
-import InputWithLabel from './partials/InputWithLabel';
-import Selection from './partials/Selection';
+import InputWithLabel from './partials/inputWithLabel';
+import Selection from './partials/selection';
 
 const SignUp = () => {
 

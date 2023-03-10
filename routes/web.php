@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GladiateurController;
 use App\Http\Controllers\LudiController;
 use App\Http\Controllers\ProgressionDuJourController;
 use App\Http\Controllers\UserController;
@@ -32,6 +33,9 @@ Route::post('/change_password', [UserController::class, "change_password"]) -> m
 Route::get('/sign_out', [UserController::class, "logout"]) -> middleware('auth:sanctum');
 
 Route::get('/get_user_ludis', [LudiController::class, 'get_user_ludis']) -> middleware('auth:sanctum');
+
+Route::post('/get_ludi_gladiators', [GladiateurController::class, 'get_ludi_gladiators']) -> middleware('auth:sanctum');
+
 
 Route::post('/progression_du_jour', [ProgressionDuJourController::class, 'set_progression_du_jour']);  // -> middleware('auth:sanctum');
 

@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { getWithAxios, postWithAxios } from '../../api/axios';
 import { progressions } from '../../api/const';
 import { UserContext, UserContextProvider } from '../../userContext';
-import SideBar from './partials/SideBar';
+import SideBar from './partials/sideBar';
 
 
 
@@ -18,14 +18,6 @@ const Layout = ({children}) =>  {
         res.user ? null :  navigate('/sign_in')
     }
 
-    const setDailyProgressions = async () => {
-        const data = {
-            progressions : progressions
-        }
-        const res = postWithAxios("/progression_du_jour", data)
-
-        
-    }
 
 
  
@@ -51,9 +43,7 @@ const Layout = ({children}) =>  {
          redirectToLogin()
     },[])
 
-    useEffect(()=>{
-        setDailyProgressions()
-   },[])
+ 
 
 
     useEffect(()=>{
@@ -62,7 +52,7 @@ const Layout = ({children}) =>  {
     
     return(
         <UserContextProvider>
-            <div className="flex p-6 ">
+            <div className="flex  p-6 ">
                 <SideBar />
                 <div className="bg-[#F0EDED] w-full rounded-r-[15px] text-md">
                     <div className='flex gap-10 justify-end pr-12 items-center bg-[#C08989] rounded-tr-[15px] h-[49px]'>
@@ -76,7 +66,7 @@ const Layout = ({children}) =>  {
 
                     </div>
                     
-                    <div className='px-8'> 
+                    <div className='px-8 min-w-[500px] bg-black p-12'> 
                         <Outlet />
                     </div>
                 </div>

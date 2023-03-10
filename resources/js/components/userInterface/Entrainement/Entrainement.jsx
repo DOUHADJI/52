@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Layout from "../Layout/Layout"
+import Layout from "../Layout/layout"
 import { Button } from '@nextui-org/react';
-import GladiatorTraining from '../../partials/GladiatorTraining';
+import GladiatorTraining from '../../partials/gladiatorTraining';
 
 
 const Entrainement = () => {

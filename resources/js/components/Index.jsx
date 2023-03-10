@@ -4,18 +4,19 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import Dashboard from "./userInterface/Dashboard/Dashboard";
+import SignIn from "./signIn";
+import SignUp from "./signUp";
+import Dashboard from "./userInterface/dashboard/dashboard";
 import Ludis from "./userInterface/Ludis/Ludis";
 import Welcome from "./Welcome";
-import Entrainement from "./userInterface/Entrainement/Entrainement";
+import Entrainement from "./userInterface/entrainement/entrainement";
 import { UserContextProvider } from "./userContext";
-import Parametres from "./userInterface/Parametres/Parametres";
-import UpdateProfil from "./userInterface/Parametres/updateProfil";
-import Layout from "./userInterface/Layout/Layout";
-import Profil from "./userInterface/Parametres/Profil";
-import UpdatePassword from "./userInterface/Parametres/updatePassword";
+import Parametres from "./userInterface/parametres/parametres";
+import UpdateProfil from "./userInterface/parametres/updateProfil";
+import Layout from "./userInterface/Layout/layout";
+import Profil from "./userInterface/parametres/profil";
+import UpdatePassword from "./userInterface/parametres/updatePassword";
+import Ludi from "./userInterface/Ludis/SingleLudi";
 
 
 
@@ -48,6 +49,12 @@ const router = createBrowserRouter([
       {
         path: "ludis",
         element: <Ludis/>,
+       
+      },
+
+      {
+        path: "ludis/:ludiName",
+        element: <Ludi/>
        
       },
 

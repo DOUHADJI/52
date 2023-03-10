@@ -12,7 +12,7 @@ import './bootstrap';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import './components/Index';
+import './components';
 
 import 'react-toastify/dist/ReactToastify.css';
 
