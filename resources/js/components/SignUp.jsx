@@ -50,7 +50,8 @@ const SignUp = () => {
 
     return (
         <div className='flex flex-col items-center justify-center min-h-screen'>
-            <div className='flex flex-col items-center justify-center bg-[#F4F1F1]  h-full gap-4 py-8 px-10'>
+            <div className='flex flex-col items-center justify-center bg-[#23175ec9] gap-4 py-8 px-10'>
+                <img src="/img/52_logo.png" alt="52" className='h-36' />
                 <p className="font-bold text-lg text-[#BF7B2A] text-center my-6">
                     52 avant notre ère : Les jeux du cirque
                 </p>

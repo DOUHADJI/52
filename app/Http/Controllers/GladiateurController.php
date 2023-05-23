@@ -46,7 +46,7 @@ class GladiateurController extends Controller
         }
 
 
-        $gladiateur= Gladiateur::create([
+        $gladiateur = Gladiateur::create([
             "nom"=> $request ->nom,
             'avatar' => $request -> avatar,
             "recrutable"=> false,

@@ -13,7 +13,7 @@ import './bootstrap';
  */
 
 import './components';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 

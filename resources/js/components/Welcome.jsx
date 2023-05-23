@@ -7,8 +7,9 @@ const Welcome = () => {
    
 
     return (
-        <div className='flex flex-col items-center justify-center min-h-screen'>
-            <div className='flex flex-col items-center justify-center bg-[#F4F1F1] h-[345px] w-[384px] gap-12'>
+        <div className='flex flex-col items-center justify-center min-h-screen bg-transparent'>
+            <div className='flex flex-col  items-center justify-center bg-[#23175ec9] py-12 w-[384px] gap-12'>
+                <img src="/img/52_logo.png" alt="52" className='h-36' />
                 <p className="font-bold text-md text-[#BF7B2A] text-center">
                     52 avant notre ère : Les jeux du cirque
                 </p>
@@ -33,7 +34,7 @@ const Welcome = () => {
 
 export default Welcome
 
-if (document.getElementById('welcome')) {
+/* if (document.getElementById('welcome')) {
     const Index = ReactDOM.createRoot(document.getElementById("welcome"));
 
     Index.render(
@@ -41,4 +42,4 @@ if (document.getElementById('welcome')) {
             <Welcome/>
         </React.StrictMode>
     )
-}
+} */

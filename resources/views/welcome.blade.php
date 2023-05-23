@@ -4,11 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Jeux du cirque</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    {{--     <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" /> --}}
+        <link href="https://fonts.cdnfonts.com/css/medieval-sharp" rel="stylesheet">
+                
 
 
         @viteReactRefresh
@@ -17,7 +19,7 @@
 
     
     </head>
-    <body class="antialiased bg-[#D9D9D9]">
-        <div id="root"></div>
+    <body class="antialiased bg-gray-200 min-h-screen font-medieval overflow-hidden">
+        <div id="root" class="h-full"></div>
     </body>
 </html>

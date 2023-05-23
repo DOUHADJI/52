@@ -13,13 +13,13 @@ const SideBarBtn = ({label, url}) => {
         {
             url == path ?
 
-            <p className="text-black font-black text-start">
+            <p className="text-yellow-600 font-black text-start text-lg">
             {label}
             </p>
 
             :
 
-            <p className="text-gray-500 font-black text-md text-start">
+            <p className="text-yellow-600/50 font-black text-md text-start text-lg">
             {label}
             </p>
         }

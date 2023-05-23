@@ -1,7 +1,6 @@
-import { Avatar, Card } from "@nextui-org/react"
+import { Avatar, Card } from "@nextui-org/react";
 
-const PJCard = ({cardHexColorIndex, typeEntrainement, valeur}) => {
-
+const PJCard = ({ cardHexColorIndex, typeEntrainement, valeur }) => {
     const cardHexColor = [
         "bg-[#542188]",
         "bg-[#7674CB]",
@@ -11,24 +10,24 @@ const PJCard = ({cardHexColorIndex, typeEntrainement, valeur}) => {
         "bg-[#E489AF]",
         "bg-[#542188]",
         "bg-[#7674CB]",
-        "bg-[#E489AF]"
+        "bg-[#E489AF]",
+    ];
 
-    ]
-
-    return(
-        <Card >
-            <Card.Body className={cardHexColor[cardHexColorIndex]}>
-                <div className="flex items-center justify-between px-4">
-                    <p className="text-white font-black"> 
-                    Entrainement <br /> 
-                    {typeEntrainement}
-                    </p>
-                    <Avatar squared icon={<span className="text-md font-bold">{valeur}</span>} className="font-bold" />
+    return (
+        <div className="flex gap-4 items-center justify-center">
+        
+            <div className={cardHexColor[cardHexColorIndex] + " p-3 rounded-full w-28 h-28"}>
+                <div className="flex items-center justify-center bg-gray-100 h-full rounded-full">
+                <div className="text-2xl font-bold">+ {valeur}</div>
                 </div>
-            </Card.Body>
-               
-        </Card>
-    )
-}
+            </div>
 
-export default PJCard
+            <p className="text-yellow-300 pt-4 font-black">
+                        Entrainement <br />
+                        {typeEntrainement}
+                    </p>
+        </div>
+    );
+};
+
+export default PJCard;

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GladiateurController;
+use App\Http\Controllers\ImagePathController;
 use App\Http\Controllers\LudiController;
 use App\Http\Controllers\ProgressionDuJourController;
 use App\Http\Controllers\UserController;
@@ -46,7 +47,10 @@ Route::put('/update_gladiator_progression', [GladiateurController::class, 'updat
 Route::post('/progression_du_jour', [ProgressionDuJourController::class, 'set_progression_du_jour']);  // -> middleware('auth:sanctum');
 
 
-
+Route::controller(ImagePathController::class)->group(function()
+{
+    Route::get("/assets/{path}", 'get_asset');
+});
 
 
 

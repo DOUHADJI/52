@@ -16,10 +16,6 @@ class LudiController extends Controller
 
         $ludis = Ludi::where('user_id', $id)->get();
 
-        /* $l = Ludi::leftJoin('gladiateurs', 'gladiateurs.ludi_id', '=', 'ludis.id') 
-                -> groupBy('ludis.id') 
-                ->get(['ludis.id', 'ludis.nom', DB::raw('count(gladiateurs.id) as gladiateurs')]); */
-
 
         return response() -> json([
             "status" => "success",

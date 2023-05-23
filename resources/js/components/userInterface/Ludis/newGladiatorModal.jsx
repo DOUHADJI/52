@@ -19,13 +19,13 @@ const NewGladiatorModal = ({newAvatarModalIsVisible,setNewAvatarModalIsVisible,l
         setNom(value)
     }
 
-    const updateSuccessfull = () => {
+    const updateSuccessfull = (ludi) => {
        toast("Gladiateur créé avec success", {
         type:"success",
         hideProgressBar:true
        })
        setNewAvatarModalIsVisible(false)
-       navigate('/backoffice/ludis')
+       navigate('/backoffice/ludis/' + ludi.id + '/' + ludi.nom + '/' + ludi.specialite)
         window.location.reload(true)
         
     }
@@ -43,7 +43,7 @@ const NewGladiatorModal = ({newAvatarModalIsVisible,setNewAvatarModalIsVisible,l
 
         const res = await postWithAxios('/create_gladiateur', data)
 
-        res.errors?setErrors(res.errors) : updateSuccessfull()
+        res.errors?setErrors(res.errors) : updateSuccessfull(res.ludi)
 
        
     }
