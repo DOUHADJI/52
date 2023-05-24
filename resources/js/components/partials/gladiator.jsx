@@ -6,6 +6,7 @@ import TrainingModal from "./trainingModal";
 import { FcMinus, FcSportsMode } from "react-icons/fc";
 import { FaDoorOpen } from "react-icons/fa";
 import GladiatorBtn from "./gladiatorBtn";
+import DeleteGladiatorFromLudiModal from "../userInterface/Ludis/deleteGladiatorFromLudiModal";
 
 const Gladiator = ({
     nom,
@@ -20,9 +21,14 @@ const Gladiator = ({
     const i = +avatarIndex;
 
     const [open, setOpen] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
     const openTrainingModal = () => {
         setOpen(true);
+    };
+
+    const handleDeleteModal = () => {
+        setOpenDeleteModal(true);
     };
 
     const handleOutFromLudi = () => {};
@@ -37,8 +43,8 @@ const Gladiator = ({
         {
             tooltip_Text: "remercier",
             icon: <FcMinus className="text-2xl" />,
-            color : "error",
-            onPress: openTrainingModal,
+            color: "error",
+            onPress: handleDeleteModal,
         },
     ];
 
@@ -118,6 +124,14 @@ const Gladiator = ({
             <TrainingModal
                 open={open}
                 setOpen={setOpen}
+                nom={nom}
+                avatarIndex={i}
+                id={id}
+            />
+
+            <DeleteGladiatorFromLudiModal
+                open={openDeleteModal}
+                setOpen={setOpenDeleteModal}
                 nom={nom}
                 avatarIndex={i}
                 id={id}

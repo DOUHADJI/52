@@ -23,11 +23,12 @@ const UpdateLudiModal = ({
     };
 
     const updateSuccessfull = (ludi) => {
+
+        setUpdateLudiModalIsVisible(false);
         toast("Les informations de l'école ont été modifiée avec success", {
             type: "success",
             hideProgressBar: true,
         });
-        setUpdateLudiModalIsVisible(false);
         navigate('/backoffice/ludis/' + ludi.id + '/' + ludi.nom + '/' + ludi.specialite)
         window.location.reload(true);
     };

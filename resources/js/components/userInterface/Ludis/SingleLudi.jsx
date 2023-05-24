@@ -12,6 +12,7 @@ const Ludi = () => {
     const { ludiName, ludiSpecialite, ludiId } = params;
 
     const [gladiateurs, setGladiateurs] = useState();
+    const [checking, setChecking] = useState(true);
 
     const [updateLudiModalIsVisible, setUpdateLudiModalIsVisible] =
         useState(false);
@@ -34,6 +35,7 @@ const Ludi = () => {
         const res = await postWithAxios("/get_ludi_gladiators", data);
 
         setGladiateurs(res.gladiateurs);
+        setChecking(false)
     };
 
     useEffect(() => {
@@ -74,14 +76,18 @@ const Ludi = () => {
                                 />
                             ))
                         ) : (
-                            <p className="flex items-center gap-2 text-lg w-full">
+                            <p >
+                                {checking ? <div>
+                                    checking ...
+                                </div> : <div className="flex items-center gap-2 text-lg w-full">
                                 <span>
-                                    Vous n'avez aucun gladiateur dans votre
-                                    école
+                                    Vous n'avez aucun gladiateur dans votre école
                                 </span>
                                 <span>
                                     <BsEmojiFrown className="text-3xl" />
                                 </span>
+                                    </div>}
+                               
                             </p>
                         )}
                     </tbody>

@@ -173,4 +173,20 @@ class GladiateurController extends Controller
     }
 
 
+    public function remove_from_ludi(Request $request) 
+    {
+        $id = $request->gladiatorId;
+
+        $gladiateur = Gladiateur::whereId($id)->first();
+
+        $gladiateur->ludi_id = null;
+
+        $gladiateur->save();
+
+        return response()->json([
+            "status" => "success",
+            "message" => "gladiateur retiré avec sucess"
+        ]);
+    }
+
 }
