@@ -173,6 +173,24 @@ class GladiateurController extends Controller
     }
 
 
+    public function recruite_gladiator(Request $request)
+    {
+        $id = $request->gladiatorId;
+        $ludi_id = $request->ludiId;
+
+        $gladiateur = Gladiateur::whereId($id)->first();
+
+        $gladiateur->ludi_id = $ludi_id;
+
+        $gladiateur->save();
+
+        return response()->json([
+            "status" => "success",
+            "message" => "gladiateur recruité avec sucess"
+        ]);
+
+    }
+
     public function remove_from_ludi(Request $request) 
     {
         $id = $request->gladiatorId;

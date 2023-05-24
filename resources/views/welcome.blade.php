@@ -19,7 +19,7 @@
 
     
     </head>
-    <body class="antialiased bg-gray-200 min-h-screen font-medieval overflow-hidden">
+    <body class="antialiased bg-gray-200 min-h-screen font-medieval overflow-y-hidden min-w-[830px]">
         <div id="root" class="h-full"></div>
     </body>
 </html>

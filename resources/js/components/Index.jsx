@@ -15,6 +15,7 @@ import Layout from "./userInterface/Layout/layout";
 import Profil from "./userInterface/parametres/profil";
 import UpdatePassword from "./userInterface/parametres/updatePassword";
 import Ludi from "./userInterface/Ludis/SingleLudi";
+import Recruitment from "./userInterface/recruitment/recruitment";
 
 
 
@@ -54,6 +55,11 @@ const router = createBrowserRouter([
         path: "ludis/:ludiId/:ludiName/:ludiSpecialite",
         element: <Ludi/>
        
+      },
+
+      {
+        path : "recruiter/liste-de-recruitement",
+        element : <Recruitment />
       },
 
     

@@ -54,6 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/create_gladiateur', [GladiateurController::class, 'create']);
         Route::put('/update_gladiator_progression', [GladiateurController::class, 'update_on_training']);
         Route::put('/remove_gladiator_from_ludi', "remove_from_ludi");
+        Route::put("recruite_gladiator", "recruite_gladiator");
 
     });
 

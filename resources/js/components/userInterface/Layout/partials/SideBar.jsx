@@ -27,7 +27,7 @@ const SideBar = () => {
 
         {
             label : 'Recrutement',
-            url : "/backoffice/recrutement"
+            url : "/backoffice/recruiter/liste-de-recruitement"
 
         },
 
