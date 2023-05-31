@@ -3,10 +3,11 @@ import { useState } from "react";
 import { BsPen, BsPencil } from "react-icons/bs";
 import { avatars } from "../api/avatars";
 import TrainingModal from "./trainingModal";
-import { FcMinus, FcSportsMode } from "react-icons/fc";
+import { FcMinus, FcPlus, FcSportsMode } from "react-icons/fc";
 import { FaDoorOpen } from "react-icons/fa";
 import GladiatorBtn from "./gladiatorBtn";
 import DeleteGladiatorFromLudiModal from "../userInterface/Ludis/deleteGladiatorFromLudiModal";
+import RecruitGladiatorModal from "../userInterface/Ludis/recrutmentModal";
 
 const Gladiator = ({
     nom,
@@ -17,11 +18,13 @@ const Gladiator = ({
     vitesse,
     strategie,
     id,
+    recrutableStatus,
 }) => {
     const i = +avatarIndex;
 
     const [open, setOpen] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openRecruitModal, setOpenRecruitModal] = useState(false);
 
     const openTrainingModal = () => {
         setOpen(true);
@@ -31,13 +34,16 @@ const Gladiator = ({
         setOpenDeleteModal(true);
     };
 
-    const handleOutFromLudi = () => {};
+    const handleRecrutmentModal =  () => {
+        setOpenRecruitModal(true)
+    };
 
     const buttons = [
         {
             tooltip_Text: "entrainer",
             icon: <FcSportsMode className="text-2xl" />,
             onPress: openTrainingModal,
+            forRecruitment : false
         },
 
         {
@@ -45,6 +51,15 @@ const Gladiator = ({
             icon: <FcMinus className="text-2xl" />,
             color: "error",
             onPress: handleDeleteModal,
+            forRecruitment : false
+        },
+
+        {
+            tooltip_Text: "recruter",
+            icon: <FcPlus className="text-2xl" />,
+            color: "primary",
+            onPress: handleRecrutmentModal,
+            forRecruitment : true
         },
     ];
 
@@ -108,7 +123,7 @@ const Gladiator = ({
                 </td>
 
                 <td>
-                    <div className=" flex flex-wrap justify-end gap-4 ">
+                    <div className=" flex flex-wrap justify-center gap-4 ">
                         {buttons?.map((e, index) => (
                             <GladiatorBtn
                                 key={index}
@@ -116,6 +131,8 @@ const Gladiator = ({
                                 icon={e.icon}
                                 color={e.color}
                                 onPress={e.onPress}
+                                recrutableStatus={recrutableStatus}
+                                forRecuitment={e.forRecruitment}
                             />
                         ))}
                     </div>
@@ -132,6 +149,14 @@ const Gladiator = ({
             <DeleteGladiatorFromLudiModal
                 open={openDeleteModal}
                 setOpen={setOpenDeleteModal}
+                nom={nom}
+                avatarIndex={i}
+                id={id}
+            />
+
+            <RecruitGladiatorModal
+                open={openRecruitModal}
+                setOpen={setOpenRecruitModal}
                 nom={nom}
                 avatarIndex={i}
                 id={id}

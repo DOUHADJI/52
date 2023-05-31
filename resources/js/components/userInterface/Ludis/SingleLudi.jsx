@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GladiatorInfos from "../../partials/gladiator";
 import { Button } from "@nextui-org/react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { postWithAxios } from "../../api/axios";
 import { BsEmojiFrown } from "react-icons/bs";
 import UpdateLudiModal from "./updateLudiModal";
@@ -10,6 +10,7 @@ import NewGladiatorModal from "./newGladiatorModal";
 const Ludi = () => {
     const params = useParams();
     const { ludiName, ludiSpecialite, ludiId } = params;
+    const navigate = useNavigate()
 
     const [gladiateurs, setGladiateurs] = useState();
     const [checking, setChecking] = useState(true);
@@ -37,6 +38,11 @@ const Ludi = () => {
         setGladiateurs(res.gladiateurs);
         setChecking(false)
     };
+
+
+    const handleRecruitment = () => {
+        navigate(`/backoffice/ludis/${ludiName}/recruiter`)
+    }
 
     useEffect(() => {
         getGladiatorsOfTheLudi();
@@ -73,6 +79,7 @@ const Ludi = () => {
                                     strategie={g.strategie}
                                     avatarIndex={g.avatar}
                                     id={g.id}
+                                    recrutableStatus={g.recrutable}
                                 />
                             ))
                         ) : (
@@ -116,7 +123,7 @@ const Ludi = () => {
                     <span className="font-bold">Créer un gladiateur</span>
                 </Button>
 
-                <Button auto color={"secondary"} size="lg" disabled>
+                <Button auto color={"secondary"} size="lg" onClick={handleRecruitment}>
                     <span className="font-bold">Recruter un gladiateur</span>
                 </Button>
             </div>

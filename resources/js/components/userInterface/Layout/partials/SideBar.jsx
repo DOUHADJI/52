@@ -25,11 +25,11 @@ const SideBar = () => {
 
         },
 
-        {
+        /* {
             label : 'Recrutement',
             url : "/backoffice/recruiter/liste-de-recruitement"
 
-        },
+        }, */
 
         {
             label : 'Mon compte',

@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path : "recruiter/liste-de-recruitement",
+        path : "ludis/:ludiName/recruiter",
         element : <Recruitment />
       },
 

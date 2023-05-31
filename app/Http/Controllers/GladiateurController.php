@@ -59,7 +59,7 @@ class GladiateurController extends Controller
         ]);
 
         if($gladiateur){
-            
+        
             $user ->update([
                 "bourse" => $user->bourse - 5
             ]);
@@ -176,11 +176,13 @@ class GladiateurController extends Controller
     public function recruite_gladiator(Request $request)
     {
         $id = $request->gladiatorId;
-        $ludi_id = $request->ludiId;
+        $ludi_name = $request->ludiName;
 
         $gladiateur = Gladiateur::whereId($id)->first();
+        $ludi = Ludi::where("nom",$ludi_name)->first();
 
-        $gladiateur->ludi_id = $ludi_id;
+        $gladiateur->ludi_id = $ludi->id;
+        $gladiateur->recrutable=0;
 
         $gladiateur->save();
 
@@ -198,12 +200,23 @@ class GladiateurController extends Controller
         $gladiateur = Gladiateur::whereId($id)->first();
 
         $gladiateur->ludi_id = null;
+        $gladiateur->recrutable=1;
 
         $gladiateur->save();
 
         return response()->json([
             "status" => "success",
             "message" => "gladiateur retiré avec sucess"
+        ]);
+    }
+
+    public function get_recruitable_gladiators(Request $request)
+    {
+        $list = Gladiateur::where('recrutable', 1)->get();
+
+        return response()->json([
+            "status" => "success",
+            "list" => $list
         ]);
     }
 

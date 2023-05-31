@@ -1,13 +1,46 @@
-import { Button, Tooltip } from "@nextui-org/react"
+import { Button, Tooltip } from "@nextui-org/react";
 
-const GladiatorBtn = ({icon, tooltip_text, onPress, color="success"}) => {
-    return(
+const GladiatorBtn = ({
+    icon,
+    tooltip_text,
+    onPress,
+    recrutableStatus,
+    color = "success",
+    forRecuitment,
+}) => {
+    return (
         <Tooltip content={tooltip_text}>
-            <Button auto onPress={onPress} color={color}>
-                {icon}
-            </Button>
-        </Tooltip>
-    )
-}
+            {forRecuitment && recrutableStatus == 1 ? (
+                <Button
+                    auto
+                    onPress={onPress}
+                    color={color}
+                    hidden={
+                        tooltip_text !== "recruter"
+                            ? true
+                            : false
+                    }
+                >
+                    {icon}
+                </Button>
+            ) : null}
 
-export default GladiatorBtn
+            {recrutableStatus == 0 ? (
+                <Button
+                    auto
+                    onPress={onPress}
+                    color={color}
+                    hidden={
+                        tooltip_text == "recruter"
+                            ? true
+                            : false
+                    }
+                >
+                    {icon}
+                </Button>
+            ) : null}
+        </Tooltip>
+    );
+};
+
+export default GladiatorBtn;

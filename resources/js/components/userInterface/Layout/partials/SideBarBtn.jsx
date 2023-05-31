@@ -13,7 +13,7 @@ const SideBarBtn = ({label, url}) => {
         {
             url == path ?
 
-            <p className="text-yellow-600 font-black text-start text-lg">
+            <p className="text-gray-200 font-black text-start text-lg">
             {label}
             </p>
 
